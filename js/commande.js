@@ -4,7 +4,7 @@
 // Marche à suivre complète : voir GUIDE-BOUTIQUE.md à la racine du projet.
 // Une fois ton Apps Script déployé, colle son URL ci-dessous (elle se termine
 // par /exec).
-const URL_GOOGLE_SHEET = "https://script.google.com/macros/s/AKfycbxQkk5HcqvbL1Sh0UigYtaKwPQBYTGqUPjKs6Cb3FEQK-xlRSpPHnIcduKn6Vk7aetc/exec";
+const URL_GOOGLE_SHEET = "https://script.google.com/macros/s/AKfycbymmwk5anY0QPCpR1Myq8EH6csXOxQ6C7FGg3CqgBYgih0INIa5wT3gt6jplpeUkM_U/exec";
 
 function construireDetailCommande(panier) {
   return Object.keys(panier)
