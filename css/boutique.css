@@ -1,0 +1,237 @@
+/* ============================================================
+   BOUTIQUE — point d'entrée CSS de boutique.html
+   Importe les mêmes fondations que le site principal, puis ajoute
+   ce qui est propre à la boutique : filtres, cartes produit, panier.
+   ============================================================ */
+@import url("base.css");       /* variables (couleurs, polices) + resets */
+@import url("boutons.css");    /* .bouton — réutilisé partout ici */
+@import url("navigation.css"); /* barre de navigation + menu mobile */
+@import url("sections.css");   /* .section / .section-entete génériques */
+
+/* ============================================================
+   INTRODUCTION + FILTRES
+   ============================================================ */
+/* ============================================================
+   EN-TÊTE DE PAGE
+   Pas de hero ici (contrairement à main.html) : c'est ce bloc qui
+   compense la hauteur de la barre de navigation fixe.
+   ============================================================ */
+.boutique-main{ padding-top: calc(var(--hauteur-nav) + 40px); }
+
+.section-entete-centre{ align-items:center; text-align:center; }
+
+.boutique-intro{
+  text-align:center;
+  max-width: 60ch;
+  margin: 0 auto 40px;
+  color: var(--texte-attenue);
+}
+
+.filtres{
+  display:flex; flex-wrap:wrap; gap:10px;
+  justify-content:center;
+  margin-bottom: 40px;
+}
+.filtre-categorie{
+  font-family: var(--police-mono);
+  font-size: 13px; letter-spacing:.04em;
+  padding: 9px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--ligne-forte);
+  background: transparent;
+  color: var(--texte-attenue);
+  cursor:pointer;
+  transition: border-color .2s ease, color .2s ease, background .2s ease;
+}
+.filtre-categorie:hover{ border-color: var(--braise); color: var(--texte); }
+.filtre-categorie.est-actif{
+  background: var(--braise);
+  border-color: var(--braise);
+  color: #16100D;
+}
+
+/* ============================================================
+   GRILLE PRODUITS
+   ============================================================ */
+.grille-boutique{
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+}
+
+.carte-produit-echantillon{
+  height: 110px;
+  border-radius: 3px;
+  margin-bottom: 4px;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carte-produit-echantillon[data-teinte="braise"]{ background: linear-gradient(140deg, var(--braise-fonce), var(--braise)); }
+.carte-produit-echantillon[data-teinte="charbon"]{ background: linear-gradient(140deg, #0F0C0A, #2A211B); }
+.carte-produit-echantillon[data-teinte="ambre"]{ background: linear-gradient(140deg, var(--braise), var(--ambre)); }
+
+.carte-produit-categorie{
+  font-family: var(--police-mono);
+  font-size: 11px; letter-spacing:.08em;
+  text-transform: uppercase;
+  color: var(--ambre);
+}
+.carte-produit h3{ font-size: 17px; line-height:1.3; }
+
+.carte-produit-bas{
+  margin-top: auto;
+  display:flex; align-items:center; justify-content:space-between;
+  padding-top: 4px;
+}
+.carte-prix{ font-family: var(--police-mono); color: var(--ambre); font-size: 14px; }
+
+.bouton-petit{ padding: 8px 16px; font-size: 12px; }
+
+.carte-produit-image {
+  width: 100%; height: 90%;
+  object-fit: contain;
+  border-radius: 5px;
+
+}
+
+/* ============================================================
+   BOUTON FLOTTANT DU PANIER
+   ============================================================ */
+.panier-bouton{
+  position: fixed; right: 24px; bottom: 24px;
+  z-index: 45;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: var(--braise);
+  font-size: 22px;
+  cursor:pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+  transition: transform .2s var(--courbe);
+}
+.panier-bouton:hover{ transform: translateY(-2px); }
+
+.panier-compteur{
+  position:absolute; top:-4px; right:-4px;
+  min-width: 20px; height:20px; padding: 0 4px;
+  border-radius: 10px;
+  background: var(--ambre);
+  color: #16100D;
+  font-family: var(--police-mono);
+  font-size: 11px; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* ============================================================
+   TIROIR DU PANIER
+   ============================================================ */
+.panier-fond{
+  position: fixed; inset:0;
+  z-index: 55;
+  background: rgba(0,0,0,.55);
+  opacity:0;
+  pointer-events:none;
+  transition: opacity .3s ease;
+}
+.panier-fond.est-ouvert{ opacity:1; pointer-events:auto; }
+
+.panier{
+  position: fixed; top:0; right:0;
+  z-index: 60;
+  width: min(90vw, 380px);
+  height: 100dvh;
+  background: var(--fond-alt);
+  border-left: 1px solid var(--ligne);
+  box-shadow: -20px 0 40px rgba(0,0,0,.35);
+  padding: 24px;
+  display:flex; flex-direction:column;
+  overflow-y:auto;
+  transform: translateX(100%);
+  transition: transform .35s var(--courbe);
+}
+.panier.est-ouvert{ transform: translateX(0); }
+
+.panier-entete{
+  display:flex; align-items:center; justify-content:space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--ligne);
+}
+.panier-fermer{
+  background:none; border:none; cursor:pointer;
+  font-size: 24px; line-height:1;
+  color: var(--texte-attenue);
+}
+.panier-fermer:hover{ color: var(--texte); }
+
+.panier-liste{ display:flex; flex-direction:column; padding: 16px 0; }
+.panier-vide{ color: var(--texte-attenue); font-size: 14px; padding: 12px 0; }
+
+.panier-ligne{
+  display:grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items:center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--ligne);
+  font-size: 13.5px;
+}
+.panier-ligne-nom{ color: var(--texte); }
+.panier-ligne-quantite{ color: var(--texte-attenue); font-family: var(--police-mono); font-size:12px; }
+.panier-ligne-prix{ font-family: var(--police-mono); color: var(--ambre); }
+.panier-ligne-retirer{
+  width:22px; height:22px;
+  border-radius: 50%;
+  border: 1px solid var(--ligne-forte);
+  background: none;
+  color: var(--texte);
+  cursor:pointer;
+  line-height:1;
+}
+.panier-ligne-retirer:hover{ border-color: var(--braise); color: var(--braise); }
+
+.panier-total-ligne{
+  display:flex; justify-content:space-between; align-items:center;
+  padding: 16px 0;
+  border-top: 1px solid var(--ligne-forte);
+  font-family: var(--police-titre);
+  font-size: 20px;
+}
+
+.formulaire-commande{ display:flex; flex-direction:column; gap:14px; padding-top: 8px; }
+.formulaire-commande label{
+  display:flex; flex-direction:column; gap:6px;
+  font-size: 12.5px; color: var(--texte-attenue); letter-spacing:.03em;
+}
+.formulaire-commande input{
+  background: var(--fond);
+  border: 1px solid var(--ligne);
+  border-radius: 3px;
+  padding: 10px 12px;
+  color: var(--texte);
+  font-family: var(--police-texte);
+  font-size: 14px;
+}
+.formulaire-commande input:focus{ border-color: var(--braise); outline:none; }
+.formulaire-commande button{ margin-top: 4px; border:none; }
+
+
+/* ============================================================
+   POPUP DE CONFIRMATION DE COMMANDE
+   ============================================================ */
+
+.popup-recap{
+  position: fixed; inset:0;
+  z-index: 100;
+  background: rgba(0,0,0,.55);
+  display:flex; align-items:center; justify-content:center;
+}
+.popup-recap[hidden]{
+  display: none;
+}
+.popup-contenu{
+  background: var(--fond-alt);
+  border-radius: 6px;
+  width: 70%;
+  min-width: 280px; max-width: 400px;
+  padding: 24px;
+  display:flex; flex-direction:column; gap: 16px;
+}

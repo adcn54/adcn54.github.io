@@ -1,0 +1,66 @@
+/* ============================================================
+   BASE — variables & réinitialisations globales
+   Tout le reste du site lit ces variables : c'est le seul endroit
+   à modifier pour changer une couleur ou une police partout.
+   ============================================================ */
+:root{
+  /* couleurs */
+  --fond: #14100E;
+  --fond-alt: #1C1611;
+  --texte: #F3EAE0;
+  --texte-attenue: #A69A8C;
+  --braise: #D6432B;
+  --braise-fonce: #8C1F1F;
+  --ambre: #E8934A;
+  --ligne: rgba(243,234,224,0.12);
+  --ligne-forte: rgba(243,234,224,0.22);
+
+  /* typographie */
+  --police-titre: "Big Shoulders Display", sans-serif;
+  --police-texte: "Work Sans", sans-serif;
+  --police-mono: "JetBrains Mono", monospace;
+
+  /* layout partagé */
+  --hauteur-nav: 76px;
+  --courbe: cubic-bezier(.22,.61,.36,1);
+}
+
+*{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+}
+
+body{
+  margin:0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--police-texte);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3{ margin:0; font-family: var(--police-titre); font-weight:700; letter-spacing:.01em; }
+p{ margin:0; }
+
+::selection{ background: var(--braise); color: var(--fond); }
+
+:focus-visible{
+  outline: 2px solid var(--ambre);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* léger grain pour que le fond charbon ne paraisse pas trop plat/numérique */
+body::before{
+  content:"";
+  position: fixed; inset:0;
+  pointer-events:none;
+  z-index: 2;
+  opacity: .05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+

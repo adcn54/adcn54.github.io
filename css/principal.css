@@ -1,0 +1,12 @@
+/* ============================================================
+   ADCN — point d'entrée du CSS
+   main.html ne charge que ce fichier ; chaque partie du site a
+   son propre fichier ci-dessous. Édite celui qui correspond à
+   ce que tu veux changer, pas besoin de fouiller un gros fichier.
+   ============================================================ */
+@import url("base.css");        /* variables (couleurs, polices) + resets */
+@import url("boutons.css");     /* .bouton — accueil + formulaire de contact */
+@import url("chargement.css");  /* écran de chargement + renard animé */
+@import url("navigation.css");  /* barre de navigation + menu mobile */
+@import url("accueil.css");     /* titre "ADCN" + slogan + boutons */
+@import url("sections.css");    /* Histoire / Événements / Boutique / Contact / pied de page */

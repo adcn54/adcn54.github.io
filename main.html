@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADCN</title>
+<meta name="description" content="ADCN — association. Histoire, événements, boutique et contact.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/principal.css">
+<link rel="stylesheet" href="css/boutique.css">
+</head>
+<body>
+
+<!-- ===================== CHARGEMENT ===================== -->
+<div id="chargement" aria-hidden="true">
+  <svg id="marque-renard" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle class="renard-anneau" cx="120" cy="120" r="104"/>
+    <!-- oreilles -->
+    <path class="renard-trait" d="M62 96 L44 30 L100 70 Z"/>
+    <path class="renard-trait" d="M178 96 L196 30 L140 70 Z"/>
+    <!-- tête -->
+    <path class="renard-trait" d="M60 100 C58 150 82 190 120 196 C158 190 182 150 180 100 C168 78 146 66 120 66 C94 66 72 78 60 100 Z"/>
+    <!-- rayures joues -->
+    <path class="renard-trait renard-trait-fin" d="M70 108 C62 128 62 150 74 168"/>
+    <path class="renard-trait renard-trait-fin" d="M170 108 C178 128 178 150 166 168"/>
+    <!-- museau -->
+    <path class="renard-trait" d="M96 150 L120 196 L144 150 C136 138 104 138 96 150 Z"/>
+    <circle class="renard-point" cx="120" cy="158" r="4"/>
+    <!-- yeux -->
+    <path class="renard-trait renard-trait-fin" d="M88 118 L106 126"/>
+    <path class="renard-trait renard-trait-fin" d="M152 118 L134 126"/>
+    <circle class="renard-point" cx="100" cy="128" r="3.5"/>
+    <circle class="renard-point" cx="140" cy="128" r="3.5"/>
+  </svg>
+
+  <div class="chargement-legende">
+    <span id="chargement-mot">ADCN</span>
+    <span class="chargement-barre"><span id="chargement-barre-remplissage"></span></span>
+  </div>
+</div>
+
+<!-- ===================== SITE ===================== -->
+<div id="site">
+
+  <!-- NAVIGATION -->
+  <header class="navigation" id="navigation">
+    <a class="navigation-marque" href="#haut" aria-label="ADCN — retour en haut">
+      <svg class="navigation-renard" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 9 L4 3 L10 6.5 Z" class="navigation-renard-trait"/>
+        <path d="M18 9 L20 3 L14 6.5 Z" class="navigation-renard-trait"/>
+        <path d="M6 9.5 C6 15 8.5 19 12 19.5 C15.5 19 18 15 18 9.5 C16.5 7.5 14.5 6.5 12 6.5 C9.5 6.5 7.5 7.5 6 9.5 Z" class="navigation-renard-trait"/>
+      </svg>
+      <span>ADCN</span>
+    </a>
+
+    <nav class="navigation-liens" id="navigation-liens">
+      <a href="#histoire">Histoire</a>
+      <a href="#evenements">Événements</a>
+      <a href="boutique.html">Boutique</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="navigation-bouton" id="navigation-bouton" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ACCUEIL -->
+  <section class="accueil" id="haut">
+    <div class="accueil-contenu">
+      <p class="surtitre">Association</p>
+      <h1 class="accueil-titre">ADCN</h1>
+      <p class="accueil-slogan">Rejoins la meute. Histoire, événements et boutique au même endroit.</p>
+      <div class="accueil-actions">
+        <a href="boutique.html" class="bouton bouton-primaire">Voir la boutique</a>
+        <a href="#evenements" class="bouton bouton-fantome">Découvrir nos actions</a>
+      </div>
+    </div>
+    <a class="indicateur-defilement" href="#histoire" aria-label="Défiler vers la suite">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- HISTOIRE -->
+  <section class="section section-secondaire" id="histoire">
+    <div class="section-entete">
+      <p class="surtitre">01 — Depuis le terrier</p>
+      <h2>Notre histoire</h2>
+    </div>
+    <div class="frise">
+      <div class="frise-etape">
+        <span class="frise-date">1989</span>
+        <p>Naissance d'ADCN autour d'une poignée de passionnés et d'une idée simple : resserrer les liens d'amitié et de solidarité entre les étudiants en médecine.</p>
+      </div>
+      <div class="frise-etape">
+        <span class="frise-date">1989-2026</span>
+        <p>Développement de l'association et organisation de nombreux événements. Nos missions se diversifient allant de la santé publique à la vie estudiantine.</p>
+      </div>
+      <div class="frise-etape">
+        <span class="frise-date">2026</span>
+        <p>Aujourd'hui on compte plus de 450 adhérents pour un bureau de 30 membres, tous engagés pour faire vivre le monde de la carabie.</p>
+      </div>
+      <div class="frise-etape">
+        <span class="frise-date">Aujourd'hui</span>
+        <p>Président : Arthur ENJOLRAS<br>Vice-Président : Lola GODFRIN<br>Trésorière : Lison THIERRY</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENEMENTS : présentation de nos events et non un agenda. Les cartes sont générées
+       automatiquement à partir de js/evenements.js (une entrée de EVENEMENTS = une carte).
+       Chaque carte ouvre une popup (carrousel de photos + titre + sous-titre + descriptif). -->
+  <section class="section" id="evenements">
+    <div class="section-entete">
+      <p class="surtitre">02 — S'engager avec l'ADCN</p>
+      <h2>Nos Actions</h2>
+    </div>
+    <div class="grille-cartes" id="grille-evenements"></div>
+  </section>
+
+  <!-- BOUTIQUE : aperçu des 3 premiers articles du catalogue (js/produits.js),
+       avec les mêmes cartes que boutique.html. Générées par js/boutique-apercu.js. -->
+  <section class="section section-secondaire" id="boutique">
+    <div class="section-entete">
+      <p class="surtitre">03 — La boutique</p>
+      <h2>Boutique</h2>
+    </div>
+    <div class="boutique-apercu">
+      <p>Pin's, patchs, gilets et accessoires — une cinquantaine d'articles à l'effigie d'ADCN, à retrouver dans la boutique complète.</p>
+    </div>
+    <div class="grille-cartes boutique-apercu-grille" id="grille-boutique-apercu"></div>
+    <div class="boutique-apercu-action">
+      <a href="boutique.html" class="bouton bouton-primaire bouton-grand">Voir toute la boutique</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="section-entete">
+      <p class="surtitre">04 — Nous écrire</p>
+      <h2>Contact</h2>
+    </div>
+    <div class="contact-grille">
+      <form class="formulaire-contact" id="formulaire-contact">
+        <label>
+          <span>Nom</span>
+          <input type="text" name="name" required autocomplete="name">
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" required autocomplete="email">
+        </label>
+        <label>
+          <span>Message</span>
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <button type="submit" class="bouton bouton-primaire">Envoyer</button>
+        <p class="note-formulaire" id="note-formulaire" role="status"></p>
+      </form>
+      <div class="contact-infos">
+        <p><strong>Email</strong><br>contact@adcn.fr</p>
+        <p><strong>Adresse</strong><br>Grand Est, France</p>
+        <p><strong>Réseaux</strong><br>@adcn sur les réseaux sociaux</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pied-de-page">
+    <span>© <span id="annee"></span> ADCN</span>
+    <span class="pied-de-page-signature">#67 renard forever 🦊</span>
+  </footer>
+
+</div>
+
+<!-- POPUP DÉTAIL D'UN ÉVÉNEMENT (carrousel + titre + sous-titre + descriptif) -->
+<div id="popup-evenement" class="popup-evenement" hidden>
+  <div class="popup-evenement-contenu">
+    <button id="popup-evenement-fermer" class="popup-evenement-fermer" aria-label="Fermer">×</button>
+
+    <div class="popup-evenement-carrousel">
+      <div class="popup-evenement-images" id="popup-evenement-images"></div>
+      <button id="popup-evenement-prec" class="popup-evenement-nav popup-evenement-prec" aria-label="Photo précédente">‹</button>
+      <button id="popup-evenement-suiv" class="popup-evenement-nav popup-evenement-suiv" aria-label="Photo suivante">›</button>
+      <div class="popup-evenement-points" id="popup-evenement-points"></div>
+    </div>
+
+    <div class="popup-evenement-texte">
+      <span class="popup-evenement-organisateur" id="popup-evenement-organisateur"></span>
+      <h3 id="popup-evenement-titre"></h3>
+      <p class="popup-evenement-soustitre" id="popup-evenement-soustitre"></p>
+      <p class="popup-evenement-description" id="popup-evenement-description"></p>
+    </div>
+  </div>
+</div>
+
+<script src="js/chargement.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/formulaire-contact.js"></script>
+<script src="js/evenements.js"></script>
+<script src="js/produits.js"></script>
+<script src="js/boutique-apercu.js"></script>
+<script src="js/principal.js"></script>
+</body>
+</html>

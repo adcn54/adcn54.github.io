@@ -1,0 +1,98 @@
+/* ============================================================
+   CHARGEMENT — écran d'intro avec le renard, masqué une fois la
+   page prête (logique dans js/chargement.js)
+   ============================================================ */
+#chargement{
+  position: fixed; inset:0;
+  z-index: 100;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap: 28px;
+  background:
+    radial-gradient(60% 60% at 50% 42%, rgba(214,67,43,.14), transparent 70%),
+    var(--fond);
+  transition: opacity .7s var(--courbe), visibility .7s var(--courbe);
+}
+#chargement.est-cache{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+/* --- renard --- */
+#marque-renard{ width: min(38vw, 190px); height: auto; overflow: visible; }
+
+.renard-anneau{
+  stroke: var(--ligne-forte);
+  stroke-width: 1;
+  fill:none;
+}
+
+.renard-trait{
+  stroke: var(--braise);
+  stroke-width: 2.4;
+  fill:none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 900;   /* plus long que le tracé réel : le trait démarre invisible */
+  stroke-dashoffset: 900;
+  filter: drop-shadow(0 0 6px rgba(214,67,43,.55));
+  animation: tracer 1.6s var(--courbe) forwards;
+}
+.renard-trait.renard-trait-fin{ stroke-width: 1.6; stroke: var(--ambre); stroke-dasharray: 200; stroke-dashoffset: 200; }
+
+.renard-point{
+  fill: var(--ambre);
+  opacity:0;
+  animation: apparition-point .3s ease forwards;
+  animation-delay: 1.5s;
+}
+
+/* Délais du tracé, dans l'ordre des <path> du main.html :
+   1-2 oreilles, 3 tête, 4-5 joues, 6 museau, 7-8 yeux.
+   Si tu ajoutes/retires un <path>, ces numéros se décalent. */
+#marque-renard path:nth-of-type(1){ animation-delay: .05s; }
+#marque-renard path:nth-of-type(2){ animation-delay: .15s; }
+#marque-renard path:nth-of-type(3){ animation-delay: .3s; }
+#marque-renard path:nth-of-type(4){ animation-delay: .9s; }
+#marque-renard path:nth-of-type(5){ animation-delay: .95s; }
+#marque-renard path:nth-of-type(6){ animation-delay: 1.1s; }
+#marque-renard path:nth-of-type(7){ animation-delay: 1.25s; }
+#marque-renard path:nth-of-type(8){ animation-delay: 1.25s; }
+
+@keyframes tracer{ to{ stroke-dashoffset: 0; } }
+@keyframes apparition-point{ to{ opacity:1; } }
+
+/* --- texte + barre de progression --- */
+.chargement-legende{
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+}
+#chargement-mot{
+  font-family: var(--police-titre);
+  font-weight: 900;
+  font-size: clamp(20px, 4vw, 28px);
+  letter-spacing: .28em;
+  color: var(--texte);
+  opacity: .85;
+}
+.chargement-barre{
+  width: 160px; height: 2px;
+  background: var(--ligne);
+  overflow:hidden;
+  border-radius: 2px;
+}
+#chargement-barre-remplissage{
+  display:block; height:100%; width:0%;
+  background: linear-gradient(90deg, var(--braise-fonce), var(--braise), var(--ambre));
+  transition: width .25s ease;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .renard-trait, .renard-point{ animation: none; stroke-dashoffset:0; opacity:1; }
+}
+
+/* --- le reste du site, révélé après le chargement --- */
+#site{
+  opacity:0;
+  transition: opacity .8s var(--courbe);
+}
+#site.est-visible{ opacity:1; }

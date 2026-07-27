@@ -1,0 +1,73 @@
+/* ============================================================
+   ACCUEIL — écran d'entrée avec le titre "ADCN"
+   ============================================================ */
+.accueil{
+  position:relative;
+  min-height: 100svh;
+  display:flex; align-items:center; justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  padding: var(--hauteur-nav) 24px 0;
+}
+.accueil-contenu{ position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; gap:18px; }
+
+.surtitre{
+  font-family: var(--police-mono);
+  font-size: 12px;
+  letter-spacing:.22em;
+  text-transform: uppercase;
+  color: var(--ambre);
+}
+
+/* le "ADCN" géant : couleur pleine + ombre en couches pour un effet gravé */
+.accueil-titre{
+  font-size: clamp(84px, 20vw, 260px);
+  font-weight: 900;
+  line-height: .86;
+  letter-spacing: -.01em;
+  color: var(--braise);
+  text-shadow:
+    0 2px 0 var(--braise-fonce),
+    0 10px 0 rgba(0,0,0,.35),
+    0 24px 40px rgba(0,0,0,.55);
+  opacity: 0;
+  transform: translateY(18px);
+  animation: titre-apparition .9s var(--courbe) forwards;
+  animation-delay: .15s;
+}
+@keyframes titre-apparition{
+  to{ opacity:1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce){
+  .accueil-titre{ animation: none; opacity:1; transform:none; }
+}
+
+.accueil-slogan{
+  max-width: 46ch;
+  color: var(--texte-attenue);
+  font-size: clamp(15px, 2vw, 18px);
+}
+
+.accueil-actions{ display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-top:6px; }
+
+.indicateur-defilement{
+  position:absolute; bottom: 28px; left:50%; transform:translateX(-50%);
+  z-index:2;
+  width:22px; height:34px;
+  border: 1px solid var(--ligne-forte);
+  border-radius: 12px;
+}
+.indicateur-defilement span{
+  position:absolute; top:6px; left:50%; transform:translateX(-50%);
+  width:3px; height:6px; border-radius:2px;
+  background: var(--braise);
+  animation: battement 1.6s ease infinite;
+}
+@keyframes battement{
+  0%{ opacity:1; top:6px; }
+  70%{ opacity:0; top:18px; }
+  100%{ opacity:0; top:18px; }
+}
+@media (prefers-reduced-motion: reduce){
+  .indicateur-defilement span{ animation:none; }
+}

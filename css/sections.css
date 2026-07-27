@@ -1,0 +1,218 @@
+/* ============================================================
+   SECTIONS — Histoire / Événements / Boutique / Contact / pied de page
+   ============================================================ */
+.section{
+  padding: 100px clamp(20px, 6vw, 80px);
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.section-secondaire{
+  max-width: none;
+  background: var(--fond-alt);
+  border-top: 1px solid var(--ligne);
+  border-bottom: 1px solid var(--ligne);
+}
+.section-secondaire > *{ max-width: 1180px; margin-left:auto; margin-right:auto; }
+
+.section-entete{ margin-bottom: 48px; display:flex; flex-direction:column; gap:8px; }
+.section-entete h2{ font-size: clamp(32px, 5vw, 48px); }
+
+/* --- Histoire : frise chronologique --- */
+.frise{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+.frise-etape{
+  border-top: 2px solid var(--braise);
+  padding-top: 16px;
+  display:flex; flex-direction:column; gap:10px;
+}
+.frise-date{
+  font-family: var(--police-mono);
+  font-size: 13px;
+  color: var(--ambre);
+  letter-spacing:.05em;
+}
+.frise-etape p{ color: var(--texte-attenue); font-size:14.5px; line-height:1.6; }
+
+/* --- Événements / Boutique : cartes --- */
+.grille-cartes{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.carte{
+  background: var(--fond-alt);
+  border: 1px solid var(--ligne);
+  border-radius: 4px;
+  padding: 26px;
+  display:flex; flex-direction:column; gap:10px;
+  transition: border-color .25s ease, transform .25s ease;
+}
+.section .carte{ background: var(--fond); } /* garde le contraste sur un fond déjà "secondaire" */
+.carte:hover{ border-color: var(--ligne-forte); transform: translateY(-4px); }
+
+.carte-date{
+  font-family: var(--police-mono);
+  font-size: 12px; letter-spacing:.08em;
+  color: var(--braise);
+}
+.carte h3{ font-size: 22px; }
+.carte p{ color: var(--texte-attenue); font-size: 14.5px; line-height:1.55; }
+
+.carte-evenement{ cursor: pointer; }
+
+/* --- Événements : popup détail (carrousel + titre + sous-titre + descriptif) --- */
+.popup-evenement{
+  position: fixed; inset:0;
+  z-index: 100;
+  background: rgba(0,0,0,.65);
+  display:flex; align-items:center; justify-content:center;
+  padding: 24px;
+}
+.popup-evenement[hidden]{ display:none; }
+
+.popup-evenement-contenu{
+  background: var(--fond-alt);
+  border: 1px solid var(--ligne);
+  border-radius: 6px;
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.popup-evenement-fermer{
+  position: absolute; top: 12px; right: 12px;
+  z-index: 2;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(20,16,14,.6);
+  color: var(--texte);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display:flex; align-items:center; justify-content:center;
+}
+.popup-evenement-fermer:hover{ background: var(--braise); }
+
+.popup-evenement-carrousel{
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--fond);
+}
+.popup-evenement-images{
+  display:flex;
+  height:100%;
+  transition: transform .35s var(--courbe);
+}
+.popup-evenement-image{
+  width:100%; height:100%;
+  flex-shrink:0;
+  object-fit: cover;
+}
+
+.popup-evenement-nav{
+  position: absolute; top:50%; transform: translateY(-50%);
+  width: 36px; height:36px;
+  border-radius: 50%;
+  border:none;
+  background: rgba(20,16,14,.6);
+  color: var(--texte);
+  font-size: 20px;
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+}
+.popup-evenement-nav:hover{ background: var(--braise); }
+.popup-evenement-prec{ left: 12px; }
+.popup-evenement-suiv{ right: 12px; }
+
+.popup-evenement-points{
+  position:absolute; bottom: 12px; left:50%; transform: translateX(-50%);
+  display:flex; gap:6px;
+}
+.popup-evenement-point{
+  width:8px; height:8px; border-radius:50%;
+  border:none; padding:0;
+  background: rgba(243,234,224,.35);
+  cursor:pointer;
+}
+.popup-evenement-point.est-actif{ background: var(--braise); }
+
+.popup-evenement-texte{
+  padding: 24px 28px 28px;
+  display:flex; flex-direction:column; gap:10px;
+}
+.popup-evenement-organisateur{
+  font-family: var(--police-mono);
+  font-size: 12px; letter-spacing:.08em;
+  color: var(--braise);
+}
+.popup-evenement-texte h3{ font-size: clamp(24px, 4vw, 32px); }
+.popup-evenement-soustitre{ color: var(--ambre); font-size: 15px; font-weight:500; }
+.popup-evenement-description{ color: var(--texte-attenue); font-size: 14.5px; line-height:1.6; }
+
+/* --- Boutique : aperçu + lien vers la boutique complète (boutique.html) --- */
+.boutique-apercu{
+  display:flex; flex-direction:column; align-items:flex-start; gap:18px;
+  max-width: 52ch;
+}
+.boutique-apercu p{ color: var(--texte-attenue); line-height:1.6; }
+
+.boutique-apercu-grille{ padding: 32px; }
+
+.boutique-apercu-action{ display:flex; justify-content:center; }
+
+/* --- Contact --- */
+.contact-grille{
+  display:grid;
+  grid-template-columns: 1.3fr .7fr;
+  gap: 48px;
+}
+.formulaire-contact{ display:flex; flex-direction:column; gap:18px; }
+.formulaire-contact label{ display:flex; flex-direction:column; gap:8px; font-size: 13px; color: var(--texte-attenue); letter-spacing:.03em; }
+.formulaire-contact input, .formulaire-contact textarea{
+  background: var(--fond-alt);
+  border: 1px solid var(--ligne);
+  border-radius: 3px;
+  padding: 12px 14px;
+  color: var(--texte);
+  font-family: var(--police-texte);
+  font-size: 15px;
+  resize: vertical;
+  transition: border-color .2s ease;
+}
+.formulaire-contact input:focus, .formulaire-contact textarea:focus{
+  border-color: var(--braise);
+  outline:none;
+}
+.formulaire-contact button{ align-self: flex-start; margin-top:4px; border:none; }
+.note-formulaire{ font-size:13px; color: var(--ambre); min-height:1em; }
+
+.contact-infos{ display:flex; flex-direction:column; gap:22px; color: var(--texte-attenue); font-size:14.5px; line-height:1.6; }
+.contact-infos strong{ color: var(--texte); display:block; margin-bottom:2px; font-weight:600; }
+
+/* --- Pied de page --- */
+.pied-de-page{
+  display:flex; justify-content:space-between; align-items:center;
+  padding: 28px clamp(20px, 6vw, 80px) 40px;
+  color: var(--texte-attenue);
+  font-size: 13px;
+  font-family: var(--police-mono);
+}
+
+/* --- responsive --- */
+@media (max-width: 880px){
+  .frise{ grid-template-columns: repeat(2, 1fr); }
+  .grille-cartes{ grid-template-columns: 1fr 1fr; }
+  .contact-grille{ grid-template-columns: 1fr; }
+}
+@media (max-width: 640px){
+  .frise{ grid-template-columns: 1fr; }
+  .grille-cartes{ grid-template-columns: 1fr; }
+  .pied-de-page{ flex-direction:column; gap:6px; text-align:center; }
+}

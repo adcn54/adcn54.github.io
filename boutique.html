@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boutique — ADCN</title>
+<meta name="description" content="Boutique ADCN — pin's, patchs, gilets et accessoires.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/boutique.css">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<header class="navigation" id="navigation">
+  <a class="navigation-marque" href="main.html" aria-label="ADCN — retour à l'accueil">
+    <svg class="navigation-renard" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6 9 L4 3 L10 6.5 Z" class="navigation-renard-trait"/>
+      <path d="M18 9 L20 3 L14 6.5 Z" class="navigation-renard-trait"/>
+      <path d="M6 9.5 C6 15 8.5 19 12 19.5 C15.5 19 18 15 18 9.5 C16.5 7.5 14.5 6.5 12 6.5 C9.5 6.5 7.5 7.5 6 9.5 Z" class="navigation-renard-trait"/>
+    </svg>
+    <span>ADCN</span>
+  </a>
+
+  <nav class="navigation-liens" id="navigation-liens">
+    <a href="main.html#histoire">Histoire</a>
+    <a href="main.html#evenements">Événements</a>
+    <a href="boutique.html" class="est-actif">Boutique</a>
+    <a href="main.html#contact">Contact</a>
+  </nav>
+
+  <button class="navigation-bouton" id="navigation-bouton" aria-label="Ouvrir le menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main class="boutique-main">
+  <section class="section">
+    <div class="section-entete section-entete-centre">
+      <p class="surtitre">La boutique</p>
+      <h2>Pin's, patchs & accessoires</h2>
+    </div>
+    <p class="boutique-intro">Ajoute ce qui te plaît au panier, puis valide ta commande — Vient ensuite au local pour récupérer et payer tes articles.</p>
+
+    <div class="filtres">
+      <button class="filtre-categorie est-actif" data-categorie="tout">Tout</button>
+      <button class="filtre-categorie" data-categorie="pin">Pin's</button>
+      <button class="filtre-categorie" data-categorie="patch">Patchs</button>
+      <button class="filtre-categorie" data-categorie="accessoire">Accessoires</button>
+    </div>
+
+    <div class="grille-cartes grille-boutique" id="grille-boutique"></div>
+  </section>
+
+  <footer class="pied-de-page">
+    <span>© <span id="annee"></span> ADCN</span>
+    <span class="pied-de-page-signature">Fait avec un peu de braise 🦊</span>
+  </footer>
+</main>
+
+<!-- BOUTON + TIROIR DU PANIER -->
+<button id="panier-bouton" class="panier-bouton" aria-label="Ouvrir le panier">
+  🛒
+  <span id="panier-compteur" class="panier-compteur" hidden>0</span>
+</button>
+
+<div id="panier-fond" class="panier-fond"></div>
+
+<aside id="panier" class="panier" aria-label="Panier">
+  <div class="panier-entete">
+    <h2>Ton panier</h2>
+    <button id="panier-fermer" class="panier-fermer" aria-label="Fermer le panier">×</button>
+  </div>
+
+  <div id="panier-liste" class="panier-liste"></div>
+
+  <div class="panier-total-ligne">
+    <span>Total</span>
+    <span id="panier-total">0 €</span>
+  </div>
+
+  <form id="formulaire-commande" class="formulaire-commande">
+    <label>
+      <span>Prénom</span>
+      <input type="text" name="prenom" required autocomplete="given-name">
+    </label>
+    <label>
+      <span>Nom</span>
+      <input type="text" name="nom" required autocomplete="family-name">
+    </label>
+    <label>
+      <span>Email</span>
+      <input type="email" name="email" required autocomplete="email">
+    </label>
+    <button type="submit" class="bouton bouton-primaire">Valider la commande</button>
+    <p class="note-formulaire" id="note-commande" role="status"></p>
+  </form>
+</aside>
+
+<!-- Popup de confirmation de commande -->
+<div id="popup-recap" class="popup-recap" hidden>
+  <div class="popup-contenu">
+    <h3>Commande validée !</h3>
+    <p>Merci pour ta commande. Pense à passer au local pour payer (espèce/CB) et récupérer tes articles. <br> Si tu veux annuler ta commande, contacte-nous à contact@adcn.fr.</p>
+    <button id="popup-fermer" class="bouton bouton-primaire">Fermer</button>
+  </div>
+</div>
+
+<script src="js/navigation.js"></script>
+<script src="js/produits.js"></script>
+<script src="js/panier.js"></script>
+<script src="js/boutique.js"></script>
+<script src="js/commande.js"></script>
+<script src="js/boutique-principal.js"></script>
+
+
+
+</body>
+</html>

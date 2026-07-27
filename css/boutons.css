@@ -1,0 +1,31 @@
+/* ============================================================
+   BOUTONS — utilisés dans l'accueil (.accueil-actions) et le
+   formulaire de contact (bouton "Envoyer")
+   ============================================================ */
+.bouton{
+  font-family: var(--police-mono);
+  font-size: 13px; letter-spacing:.05em;
+  padding: 13px 26px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor:pointer;
+  transition: transform .2s var(--courbe), background .2s ease, border-color .2s ease, color .2s ease;
+  display:inline-block;
+}
+
+.bouton-primaire{
+  background: var(--braise);
+  color: #16100D;
+}
+.bouton-primaire:hover{ transform: translateY(-2px); background: var(--ambre); }
+
+.bouton-fantome{
+  border-color: var(--ligne-forte);
+  color: var(--texte);
+}
+.bouton-fantome:hover{ border-color: var(--braise); color: var(--braise); transform: translateY(-2px); }
+
+.bouton-grand{
+  padding: 18px 44px;
+  font-size: 15px;
+}
