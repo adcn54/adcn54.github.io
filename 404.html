@@ -158,15 +158,17 @@ function pickRandomArt() {
   lastIndex = index;
   return asciiArts[index];
 }
-
-box.addEventListener('mouseenter', function() {
+//mouse enter mais aussi on click pour mobile
+function afficherArt() {
   text.textContent = pickRandomArt();
   text.style.opacity = '1';
   text.style.transform = 'translate(-50%, -50%) scale(1)';
   hint.style.opacity = '0';
   box.style.borderColor = '#ff3700ab';
   box.style.boxShadow = '0 0 20px rgba(255, 81, 0, 0.3), inset 0 0 20px rgba(255, 81, 0, 0.1)';
-});
+}
+box.addEventListener('mouseenter', afficherArt);
+box.addEventListener('click', afficherArt);
 
 box.addEventListener('mouseleave', function() {
   text.style.opacity = '0';
