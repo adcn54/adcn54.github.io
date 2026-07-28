@@ -7,10 +7,12 @@ const NOMS_CATEGORIES_APERCU = {
   pin: "Pin's",
   patch: "Patch",
   accessoire: "Accessoire",
+  faluche: "Faluche",
+  kds: "KDS",
 };
 
 function teinteProduitApercu(produit) {
-  const teintes = { pin: "braise", patch: "ambre", accessoire: "charbon" };
+  const teintes = { pin: "braise", patch: "ambre", accessoire: "or", faluche: "charbon", kds: "bleu" };
   return teintes[produit.categorie];
 }
 
@@ -19,7 +21,7 @@ function creerCarteProduitApercu(produit) {
   carte.className = "carte carte-produit";
   carte.href = "boutique.html";
   carte.innerHTML = `
-    <div class="carte-produit-echantillon" data-teinte="${teinteProduitApercu(produit)}"><img class="carte-produit-image" src="img/${produit.id}.png" onerror="this.style.display='none';"/></div>
+    <div class="carte-produit-echantillon" data-teinte="${teinteProduitApercu(produit)}"><img class="carte-produit-image" src="img/produits/${produit.id}.png" onerror="this.style.display='none';"/></div>
     <span class="carte-produit-categorie">${NOMS_CATEGORIES_APERCU[produit.categorie]}</span>
     <h3>${produit.nom}</h3>
     <div class="carte-produit-bas">

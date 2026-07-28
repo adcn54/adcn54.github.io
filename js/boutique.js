@@ -5,6 +5,8 @@ const NOMS_CATEGORIES = {
   pin: "Pin's",
   patch: "Patch",
   accessoire: "Accessoire",
+  faluche: "Faluche",
+  kds: "KDS",
 };
 
 // Couleur de la vignette produit, dérivée de l'id : pas besoin d'une vraie
@@ -12,7 +14,7 @@ const NOMS_CATEGORIES = {
 // un champ "image" (une URL) sur le produit dans produits.js et adapte
 // creerCarteProduit() ci-dessous pour l'utiliser à la place de ce dégradé.
 function teinteProduit(produit) {
-  const teintes = {"pin": "braise", "patch": "ambre", "accessoire": "charbon"};
+  const teintes = {"pin": "braise", "patch": "ambre", "accessoire": "or", "faluche": "charbon", "kds": "bleu"};
   return teintes[produit.categorie];
 }
 
@@ -21,12 +23,14 @@ function creerCarteProduit(produit) {
   carte.className = "carte carte-produit";
   /ajoute l'image que si elle existe sinon on met un dégradé de couleur selon l'id du produit et cache l'image icon/
   carte.innerHTML = `
-    <div class="carte-produit-echantillon" data-teinte="${teinteProduit(produit)}"><img class="carte-produit-image" src="img/${produit.id}.png" onerror="this.style.display='none';"/></div>
+    <div class="carte-produit-echantillon" data-teinte="${teinteProduit(produit)}"><img class="carte-produit-image" src="img/produits/${produit.id}.png" onerror="this.style.display='none';"/></div>
     <span class="carte-produit-categorie">${NOMS_CATEGORIES[produit.categorie]}</span>
     <h3>${produit.nom}</h3>
     <div class="carte-produit-bas">
       <span class="carte-prix">${produit.prix} €</span>
-      <button class="bouton bouton-primaire bouton-petit" data-id="${produit.id}">Ajouter</button>
+      ${produit.en_vente
+        ? `<button class="bouton bouton-primaire bouton-petit" data-id="${produit.id}">Ajouter</button>`
+        : `<span class="carte-produit-indisponible">Indisponible</span>`}
     </div>
   `;
   return carte;
