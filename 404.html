@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page introuvable — ADCN</title>
+<meta name="description" content="Cette page n'existe pas. Retour à l'accueil ADCN.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/404.css">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<header class="navigation" id="navigation">
+  <a class="navigation-marque" href="main.html" aria-label="ADCN — retour à l'accueil">
+    <svg class="navigation-renard" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6 9 L4 3 L10 6.5 Z" class="navigation-renard-trait"/>
+      <path d="M18 9 L20 3 L14 6.5 Z" class="navigation-renard-trait"/>
+      <path d="M6 9.5 C6 15 8.5 19 12 19.5 C15.5 19 18 15 18 9.5 C16.5 7.5 14.5 6.5 12 6.5 C9.5 6.5 7.5 7.5 6 9.5 Z" class="navigation-renard-trait"/>
+    </svg>
+    <span>ADCN</span>
+  </a>
+
+  <nav class="navigation-liens" id="navigation-liens">
+    <a href="main.html#histoire">Histoire</a>
+    <a href="main.html#evenements">Événements</a>
+    <a href="boutique.html">Boutique</a>
+    <a href="main.html#contact">Contact</a>
+  </nav>
+
+  <button class="navigation-bouton" id="navigation-bouton" aria-label="Ouvrir le menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main>
+  <section class="section page-404">
+    <p class="code-404">404</p>
+    <p class="texte-404">Dommage, tous les carabins sont partis — Cette page est introuvable.</p>
+
+    <div id="ascii-box" style="
+  width: 300px;
+  height: 200px;
+  background-color: #0a0e27;
+  border: 2px solid #1a2847;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+">
+  <pre id="ascii-text" style="
+    color: #ff5100;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.2;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+    opacity: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    white-space: pre;
+    text-align: center;
+  "></pre>
+  <span id="hint" style="color: #6b7280; font-size: 14px; position: absolute; opacity: 1; transition: opacity 0.3s ease;">
+    Passe la souris ici
+  </span>
+</div>
+
+<script>
+const asciiArts = [
+`    _    ____   ____ _   _ 
+   / \\  |  _ \\ / ___| \\ | |
+  / _ \\ | | | | |   |  \\| |
+ / ___ \\| |_| | |___| |\\  |
+/_/   \\_\\____/ \\____|_| \\_|`,
+
+`    ___    ____  ______   __
+   /   |  / __ \\/ ____/ | / /
+  / /| | / / / / /   /  |/ / 
+ / ___ |/ /_/ / /___/ /|  /  
+/_/  |_/_____/\\____/_/ |_/   `,
+
+`    _    ___   ___ _  _ 
+   /_\\  |   \\ / __| \\| |
+  / _ \\ | |) | (__| .\` |
+ /_/ \\_\\|___/ \\___|_|\\_|`,
+
+` ██  ███   ███ █  █
+█  █ █  █ █    ██ █
+████ █  █ █    █ ██
+█  █ █  █ █    █  █
+█  █ ███   ███ █  █`,
+
+` ▒▒  ▒▒▒   ▒▒▒ ▒  ▒
+▒  ▒ ▒  ▒ ▒    ▒▒ ▒
+▒▒▒▒ ▒  ▒ ▒    ▒ ▒▒
+▒  ▒ ▒  ▒ ▒    ▒  ▒
+▒  ▒ ▒▒▒   ▒▒▒ ▒  ▒`,
+
+` ███  ████   ████ █   █
+█   █ █   █ █     ██  █
+█████ █   █ █     █ █ █
+█   █ █   █ █     █  ██
+█   █ █   █ █     █   █
+█   █ ████   ████ █   █`,
+
+` ▓▓▓  ▓▓▓▓   ▓▓▓▓ ▓   ▓
+▓   ▓ ▓   ▓ ▓     ▓▓  ▓
+▓▓▓▓▓ ▓   ▓ ▓     ▓ ▓ ▓
+▓   ▓ ▓   ▓ ▓     ▓  ▓▓
+▓   ▓ ▓   ▓ ▓     ▓   ▓
+▓   ▓ ▓▓▓▓   ▓▓▓▓ ▓   ▓`,
+
+` ░░░  ░░░░   ░░░░ ░   ░
+░   ░ ░   ░ ░     ░░  ░
+░░░░░ ░   ░ ░     ░ ░ ░
+░   ░ ░   ░ ░     ░  ░░
+░   ░ ░   ░ ░     ░   ░
+░   ░ ░░░░   ░░░░ ░   ░`,
+
+` ##  ###   ### #  #
+#  # #  # #    ## #
+#### #  # #    # ##
+#  # ###   ### #  #`,
+
+` @@  @@@   @@@ @  @
+@  @ @  @ @    @@ @
+@@@@ @  @ @    @ @@
+@  @ @@@   @@@ @  @`,
+
+`A • D • C • N`,
+
+`[A][D][C][N]`
+];
+
+let lastIndex = -1;
+const box = document.getElementById('ascii-box');
+const text = document.getElementById('ascii-text');
+const hint = document.getElementById('hint');
+
+function pickRandomArt() {
+  let index;
+  do {
+    index = Math.floor(Math.random() * asciiArts.length);
+  } while (index === lastIndex && asciiArts.length > 1);
+  lastIndex = index;
+  return asciiArts[index];
+}
+
+box.addEventListener('mouseenter', function() {
+  text.textContent = pickRandomArt();
+  text.style.opacity = '1';
+  text.style.transform = 'translate(-50%, -50%) scale(1)';
+  hint.style.opacity = '0';
+  box.style.borderColor = '#ff3700ab';
+  box.style.boxShadow = '0 0 20px rgba(255, 81, 0, 0.3), inset 0 0 20px rgba(255, 81, 0, 0.1)';
+});
+
+box.addEventListener('mouseleave', function() {
+  text.style.opacity = '0';
+  text.style.transform = 'translate(-50%, -50%) scale(0.8)';
+  hint.style.opacity = '1';
+  box.style.borderColor = '#1a2847';
+  box.style.boxShadow = 'none';
+});
+</script>
+
+    <a href="main.html" class="bouton bouton-primaire">Retour à l'accueil</a>
+  </section>
+</main>
+
+<script src="js/navigation.js"></script>
+<script src="js/jeu-404.js"></script>
+<script src="js/404-principal.js"></script>
+</body>
+</html>
