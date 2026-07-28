@@ -75,7 +75,7 @@ function initFormulaireCommande() {
       formulaire.reset();
       recap_popup()
     } catch (erreur) {
-      note.textContent = "Une erreur est survenue. Réessaie, ou écris-nous à contact@adcn.fr.";
+      note.textContent = "Une erreur est survenue. Réessaie, ou écris-nous à contact.adcn57@gmail.com.";
     } finally {
       boutonValider.disabled = false;
     }
