@@ -1,0 +1,41 @@
+/* ============================================================
+   404 — point d'entrée CSS de 404.html
+   Importe les mêmes fondations que le reste du site. Le cadre du
+   jeu, lui, est volontairement en noir/blanc pur (pas les teintes
+   braise/ambre du site) : c'est la demande explicite du jeu.
+   ============================================================ */
+@import url("base.css");       /* variables (couleurs, polices) + resets */
+@import url("boutons.css");    /* .bouton — pour "Retour à l'accueil" */
+@import url("navigation.css"); /* barre de navigation + menu mobile */
+@import url("sections.css");   /* .section générique (padding, largeur max) */
+
+/* ============================================================
+   EN-TÊTE DE PAGE
+   Pas de hero ici : ce bloc compense la hauteur de la nav fixe.
+   ============================================================ */
+.page-404{
+  padding-top: calc(var(--hauteur-nav) + 60px);
+  padding-bottom: 80px;
+  text-align: center;
+}
+
+.code-404{
+  font-family: var(--police-titre);
+  font-weight: 900;
+  font-size: clamp(64px, 16vw, 160px);
+  line-height: .85;
+  color: var(--braise);
+  text-shadow:
+    0 2px 0 var(--braise-fonce),
+    0 8px 0 rgba(0,0,0,.35),
+    0 18px 32px rgba(0,0,0,.5);
+}
+
+.texte-404{
+  color: var(--texte-attenue);
+  max-width: 46ch;
+  margin: 14px auto 40px;
+  line-height: 1.6;
+}
+
+.page-404 .bouton{ margin-top: 36px; }
