@@ -15,6 +15,12 @@
   --ligne: rgba(243,234,224,0.12);
   --ligne-forte: rgba(243,234,224,0.22);
 
+  /* Variables pour les nouvelles teintes */
+  --bleu: #4A9BC6;
+  --bleu-fonce: #2b5062;
+  --or: #E8C843;
+  --or-fonce: #9b6b3c;
+
   /* typographie */
   --police-titre: "Big Shoulders Display", sans-serif;
   --police-texte: "Work Sans", sans-serif;
