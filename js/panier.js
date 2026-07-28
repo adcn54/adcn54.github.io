@@ -83,14 +83,14 @@ function mettreAJourAffichagePanier() {
       ligne.innerHTML = `
         <span class="panier-ligne-nom">${produit.nom}</span>
         <span class="panier-ligne-quantite">× ${quantite}</span>
-        <span class="panier-ligne-prix">${produit.prix * quantite} €</span>
+        <span class="panier-ligne-prix">${Math.round(produit.prix * quantite * 100) / 100} €</span>
         <button class="panier-ligne-retirer" data-id="${id}" aria-label="Retirer un exemplaire de ${produit.nom}">−</button>
       `;
       liste.appendChild(ligne);
     });
   }
 
-  total.textContent = calculerTotal(panier) + " €";
+  total.textContent = Math.round(calculerTotal(panier) * 100) / 100 + " €";
   compteur.textContent = compterArticles(panier);
   compteur.hidden = compterArticles(panier) === 0;
 }
