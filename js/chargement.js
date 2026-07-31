@@ -1,38 +1,62 @@
-// Écran de chargement : remplit la barre de progression, puis révèle le site.
-// Expose initChargement(), appelée depuis principal.js.
+// Écran de chargement, partagé par main.html et boutique.html.
+//
+//   initChargement()                          → main.html : barre de durée fixe
+//   initChargement({ attendre: unePromesse }) → boutique.html : la barre patiente
+//                                               tant que la promesse n'est pas résolue
+//
+// Dans les deux cas on garde une durée minimale : le renard met ~1,6 s à se
+// tracer, le couper au milieu ferait davantage "bug" que "rapide".
 
-function initChargement() {
-  const mouvementReduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const duree = mouvementReduit ? 300 : 1900; // ms — assez long pour laisser le renard se tracer
+const DUREE_MINI_CHARGEMENT = 1400; // ms
 
+function initChargement(options = {}) {
   const chargement = document.getElementById("chargement");
-  const barreRemplissage = document.getElementById("chargement-barre-remplissage");
   const site = document.getElementById("site");
-  let revele = false;
+  const barre = document.getElementById("chargement-barre-remplissage");
+  if (!chargement || !site) return;
 
-  function remplirBarre() {
-    return new Promise((resolve) => {
-      const debut = performance.now();
-      function avancer(maintenant) {
-        const tempsEcoule = maintenant - debut;
-        barreRemplissage.style.width = Math.min(100, (tempsEcoule / duree) * 100) + "%";
-        tempsEcoule < duree ? requestAnimationFrame(avancer) : resolve();
-      }
-      requestAnimationFrame(avancer);
-    });
+  const mouvementReduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const dureeMini = mouvementReduit ? 200 : DUREE_MINI_CHARGEMENT;
+  const tache = options.attendre; // undefined sur main.html
+
+  let revele = false;
+  const debut = performance.now();
+
+  // Sans tâche à attendre : remplissage linéaire, comme avant.
+  // Avec : progression asymptotique vers 90 % — on ne promet pas les 100 %
+  // tant que le réseau n'a pas répondu.
+  function avancer(maintenant) {
+    if (revele) return;
+    const t = (maintenant - debut) / 1000;
+    const pourcent = tache
+      ? 90 * (1 - Math.exp(-t / 1.1))
+      : Math.min(100, ((t * 1000) / dureeMini) * 100);
+    barre.style.width = pourcent.toFixed(1) + "%";
+    requestAnimationFrame(avancer);
   }
+  requestAnimationFrame(avancer);
 
   async function reveler() {
-    if (revele) return; // évite un double déclenchement (voir setTimeout plus bas)
+    if (revele) return;
     revele = true;
-    await remplirBarre();
+
+    barre.style.width = "100%";
+    await new Promise((r) => setTimeout(r, 250)); // laisse la barre finir sa course
+
     chargement.classList.add("est-cache");
     site.classList.add("est-visible");
     document.body.style.overflow = "";
     setTimeout(() => { chargement.style.display = "none"; }, 750);
   }
 
-  document.body.style.overflow = "hidden"; // bloque le scroll tant que le chargement est visible
-  window.addEventListener("load", reveler, { once: true });
-  setTimeout(reveler, 3500); // filet de sécurité si 'load' ne se déclenche jamais (assets déjà en cache, etc.)
+  document.body.style.overflow = "hidden"; // bloque le scroll pendant le chargement
+
+  // On attend la tâche (ou le chargement de la page) ET la durée minimale.
+  const attente = tache || new Promise((r) => window.addEventListener("load", r, { once: true }));
+  Promise.all([
+    Promise.resolve(attente).catch(() => {}), // une erreur ne doit jamais figer l'écran
+    new Promise((r) => setTimeout(r, dureeMini)),
+  ]).then(reveler);
+
+  setTimeout(reveler, 12000); // filet de sécurité si tout se bloque
 }

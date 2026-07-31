@@ -2,10 +2,14 @@
 // formulaire-contact.js (voir l'ordre des balises <script> dans main.html).
 // Se contente de lancer chaque brique une fois que la page est prête.
 
-initChargement();
-initNavigation();
-initFormulaireContact();
-initEvenements();
-initBoutiqueApercu();
+(async () => {
+  initChargement();
+  initNavigation();
+  initFormulaireContact();
+  initEvenements();
 
-document.getElementById("annee").textContent = new Date().getFullYear();
+  await chargerProduits();
+  initBoutiqueApercu();
+
+  document.getElementById("annee").textContent = new Date().getFullYear();
+})();

@@ -14,6 +14,35 @@
 <link rel="stylesheet" href="css/boutique.css">
 </head>
 <body>
+<!-- ===================== CHARGEMENT ===================== -->
+<div id="chargement" aria-hidden="true">
+  <svg id="marque-renard" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle class="renard-anneau" cx="120" cy="120" r="104"/>
+    <!-- oreilles -->
+    <path class="renard-trait" d="M62 96 L44 30 L100 70 Z"/>
+    <path class="renard-trait" d="M178 96 L196 30 L140 70 Z"/>
+    <!-- tête -->
+    <path class="renard-trait" d="M60 100 C58 150 82 190 120 196 C158 190 182 150 180 100 C168 78 146 66 120 66 C94 66 72 78 60 100 Z"/>
+    <!-- rayures joues -->
+    <path class="renard-trait renard-trait-fin" d="M70 108 C62 128 62 150 74 168"/>
+    <path class="renard-trait renard-trait-fin" d="M170 108 C178 128 178 150 166 168"/>
+    <!-- museau -->
+    <path class="renard-trait" d="M96 150 L120 196 L144 150 C136 138 104 138 96 150 Z"/>
+    <circle class="renard-point" cx="120" cy="158" r="4"/>
+    <!-- yeux -->
+    <path class="renard-trait renard-trait-fin" d="M88 118 L106 126"/>
+    <path class="renard-trait renard-trait-fin" d="M152 118 L134 126"/>
+    <circle class="renard-point" cx="100" cy="128" r="3.5"/>
+    <circle class="renard-point" cx="140" cy="128" r="3.5"/>
+  </svg>
+
+  <div class="chargement-legende">
+    <span id="chargement-mot">ADCN</span>
+    <span class="chargement-barre"><span id="chargement-barre-remplissage"></span></span>
+  </div>
+</div>
+
+<div id="site">
 
 <!-- NAVIGATION -->
 <header class="navigation" id="navigation">
@@ -107,11 +136,15 @@
 <div id="popup-recap" class="popup-recap" hidden>
   <div class="popup-contenu">
     <h3>Commande validée !</h3>
-    <p>Merci pour ta commande. Pense à passer au local pour payer (espèce/CB) et récupérer tes articles. <br> Si tu veux annuler ta commande, contacte-nous à contact.adcn57@gmail.com</p>
+    <p>Merci pour ta commande. Un email récap te seras envoyé dans les prochaines heures/jours. Pense à passer au local pour payer (espèce/CB) et récupérer tes articles. <br> Si tu veux annuler ta commande, contacte-nous à contact.adcn57@gmail.com</p>
     <button id="popup-fermer" class="bouton bouton-primaire">Fermer</button>
   </div>
 </div>
 
+</div>
+<!-- fin de #site -->
+
+<script src="js/chargement.js"></script>
 <script src="js/navigation.js"></script>
 <script src="js/produits.js"></script>
 <script src="js/panier.js"></script>

@@ -24,9 +24,18 @@ function trouverProduit(idProduit) {
 
 // --- actions ---
 
+function stockDe(idProduit) {
+  const produit = trouverProduit(idProduit);
+  return produit ? produit.stock : 0;
+}
+
 function ajouterAuPanier(idProduit) {
   const panier = chargerPanier();
-  panier[idProduit] = (panier[idProduit] || 0) + 1;
+  const dejaDansPanier = panier[idProduit] || 0;
+
+  if (dejaDansPanier + 1 > stockDe(idProduit)) return; // on ne dépasse jamais le stock
+
+  panier[idProduit] = dejaDansPanier + 1;
   sauvegarderPanier(panier);
   mettreAJourAffichagePanier();
   ouvrirPanier();
@@ -84,7 +93,11 @@ function mettreAJourAffichagePanier() {
         <span class="panier-ligne-nom">${produit.nom}</span>
         <span class="panier-ligne-quantite">× ${quantite}</span>
         <span class="panier-ligne-prix">${Math.round(produit.prix * quantite * 100) / 100} €</span>
-        <button class="panier-ligne-retirer" data-id="${id}" aria-label="Retirer un exemplaire de ${produit.nom}">−</button>
+        <button class="panier-ligne-bouton" data-action="retirer" data-id="${id}"
+                aria-label="Retirer un exemplaire de ${produit.nom}">−</button>
+        <button class="panier-ligne-bouton" data-action="ajouter" data-id="${id}"
+                ${quantite >= produit.stock ? "disabled" : ""}
+                aria-label="Ajouter un exemplaire de ${produit.nom}">+</button>
       `;
       liste.appendChild(ligne);
     });
@@ -93,6 +106,7 @@ function mettreAJourAffichagePanier() {
   total.textContent = Math.round(calculerTotal(panier) * 100) / 100 + " €";
   compteur.textContent = compterArticles(panier);
   compteur.hidden = compterArticles(panier) === 0;
+  if (typeof rafraichirEtatBoutons === "function") rafraichirEtatBoutons();if (typeof rafraichirEtatBoutons === "function") rafraichirEtatBoutons();
 }
 
 function ouvrirPanier() {
@@ -114,12 +128,31 @@ function initPanier() {
   document.getElementById("panier-fermer").addEventListener("click", fermerPanier);
   document.getElementById("panier-fond").addEventListener("click", fermerPanier);
 
-  // délégation d'événement : un seul écouteur pour tous les boutons "−" de la liste
+  // délégation d'événement : un seul écouteur pour tous les − et + de la liste
   document.getElementById("panier-liste").addEventListener("click", (evt) => {
-    const bouton = evt.target.closest("[data-id]");
+    const bouton = evt.target.closest("button[data-id]");
     if (!bouton) return;
-    retirerUniteDuPanier(bouton.dataset.id);
+    if (bouton.dataset.action === "ajouter") ajouterAuPanier(bouton.dataset.id);
+    else retirerUniteDuPanier(bouton.dataset.id);
+  });
+  ajusterPanierAuStock();
+  mettreAJourAffichagePanier();
+}
+
+// Recale le panier sur le stock réel — à appeler après chaque chargement du catalogue
+function ajusterPanierAuStock() {
+  const panier = chargerPanier();
+  let modifie = false;
+
+  Object.keys(panier).forEach((id) => {
+    const stock = stockDe(id);
+    if (panier[id] > stock) {
+      modifie = true;
+      if (stock === 0) delete panier[id];
+      else panier[id] = stock;
+    }
   });
 
-  mettreAJourAffichagePanier();
+  if (modifie) sauvegarderPanier(panier);
+  return modifie;
 }

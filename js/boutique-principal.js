@@ -1,8 +1,16 @@
-// Point d'entrée de boutique.html — chargé en dernier, après navigation.js /
-// produits.js / panier.js / boutique.js / commande.js.
+// Point d'entrée de boutique.html. Le catalogue vient du Google Sheet :
+// l'écran de chargement reste affiché tant qu'il n'est pas arrivé.
+(async () => {
+  initNavigation();
 
-initNavigation();
-initPanier();
-initBoutique();
-initFormulaireCommande();
-initPopupRecap();
+  const catalogue = chargerProduits();   // on lance le fetch tout de suite
+  initChargement({ attendre: catalogue }); // l'écran attend cette promesse
+
+  await catalogue;
+
+  initPanier();
+  initBoutique();
+  initFormulaireCommande();
+  initPopupRecap();
+  document.getElementById("annee").textContent = new Date().getFullYear();
+})();

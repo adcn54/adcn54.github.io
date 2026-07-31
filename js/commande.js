@@ -4,23 +4,14 @@
 // Marche à suivre complète : voir GUIDE-BOUTIQUE.md à la racine du projet.
 // Une fois ton Apps Script déployé, colle son URL ci-dessous (elle se termine
 // par /exec).
-const URL_GOOGLE_SHEET = "https://script.google.com/macros/s/AKfycbymmwk5anY0QPCpR1Myq8EH6csXOxQ6C7FGg3CqgBYgih0INIa5wT3gt6jplpeUkM_U/exec";
 
-function construireDetailCommande(panier) {
-  return Object.keys(panier)
-    .map((id) => {
-      const produit = trouverProduit(id);
-      return produit ? `${produit.nom} x${panier[id]}` : null;
-    })
-    .filter(Boolean)
-    .join(", ");
-}
+
 
 async function envoyerCommande(commande) {
   // Content-Type "text/plain" (plutôt que "application/json") pour éviter
   // qu'un navigateur envoie une requête de pré-vérification CORS que
   // Google Apps Script ne sait pas traiter.
-  const reponse = await fetch(URL_GOOGLE_SHEET, {
+  const reponse = await fetch(URL_API_BOUTIQUE, {
     method: "POST",
     headers: { "Content-Type": "text/plain;charset=utf-8" },
     body: JSON.stringify(commande),
@@ -43,6 +34,10 @@ function initPopupRecap() {
   });
 }
 
+function construireArticles(panier) {
+  return Object.keys(panier).map((id) => ({ id: Number(id), quantite: panier[id] }));
+}
+
 function initFormulaireCommande() {
   const formulaire = document.getElementById("formulaire-commande");
   const note = document.getElementById("note-commande");
@@ -60,8 +55,7 @@ function initFormulaireCommande() {
       prenom: formulaire.prenom.value.trim(),
       nom: formulaire.nom.value.trim(),
       email: formulaire.email.value.trim(),
-      detail: construireDetailCommande(panier),
-      total: calculerTotal(panier),
+      articles: construireArticles(panier),
     };
 
     const boutonValider = formulaire.querySelector("button[type=submit]");
@@ -69,11 +63,25 @@ function initFormulaireCommande() {
     note.textContent = "Envoi de la commande…";
 
     try {
-      await envoyerCommande(commande);
-      note.textContent = "Commande envoyée — merci ! On revient vite vers toi.";
+      const reponse = await envoyerCommande(commande);
+
+      // le serveur renvoie toujours le catalogue à jour : on en profite
+      if (reponse.produits) appliquerProduits(reponse.produits);
+
+      if (reponse.statut === "stock_insuffisant") {
+        ajusterPanierAuStock();
+        mettreAJourAffichagePanier();
+        rafraichirBoutique();
+        note.textContent = "Stock insuffisant pour : " + reponse.message + ". Ton panier a été ajusté.";
+        return;
+      }
+      if (reponse.statut !== "ok") throw new Error(reponse.message || "réponse inattendue");
+
+      note.textContent = "Commande envoyée — merci !";
       viderPanier();
+      rafraichirBoutique();
       formulaire.reset();
-      recap_popup()
+      recap_popup();
     } catch (erreur) {
       note.textContent = "Une erreur est survenue. Réessaie, ou écris-nous à contact.adcn57@gmail.com.";
     } finally {

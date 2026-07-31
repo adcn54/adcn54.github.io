@@ -37,6 +37,7 @@ function initBoutiqueApercu() {
 
   //Récup le nb max de cartes qui s'affiche par ligne (selon la largeur de l'écran) pour n'afficher que les cartes visibles
   const nbCartesLigne = getComputedStyle(grille).gridTemplateColumns.split(" ").length;
-  
-  PRODUITS.slice(0, nbCartesLigne).forEach((produit) => grille.appendChild(creerCarteProduitApercu(produit)));
+  PRODUITS.filter((p) => p.stock > 0)
+    .slice(0, nbCartesLigne)
+    .forEach((produit) => grille.appendChild(creerCarteProduitApercu(produit)));
 }
