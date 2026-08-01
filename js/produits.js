@@ -2,7 +2,7 @@
 // Le Sheet (onglet "Produits") fait foi : ID | NOM | CATEGORIE | PRIX | STOCK.
 // Un produit est en vente si stock >= 1. Voir GUIDE-BOUTIQUE.md.
 
-const URL_API_BOUTIQUE = "https://script.google.com/macros/s/AKfycbxLSFSZsnGdIb4LpI2NiPB2u4tFxvPAKUEWae8ElwsWxSlfexKgwWy9sN6OwCTLwosS/exec"; // ← ton URL /exec
+const URL_API_BOUTIQUE = "https://adcn-boutique-proxy.contact-adcn57.workers.dev/"; // ← ton URL /exec
 const CLE_CACHE_PRODUITS = "adcn-produits-cache";
 
 let PRODUITS = []; // rempli par chargerProduits(), avant tout affichage
