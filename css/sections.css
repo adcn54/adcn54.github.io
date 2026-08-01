@@ -218,3 +218,5 @@
   .grille-cartes{ grid-template-columns: 1fr; }
   .pied-de-page{ flex-direction:column; gap:6px; text-align:center; }
 }
+
+.note-formulaire{ white-space: pre-line; }
