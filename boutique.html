@@ -143,7 +143,41 @@
 
 </div>
 <!-- fin de #site -->
+  
+<!-- Easter Egg --->
+<p id="coeur-modele" hidden>❤️</p>
+<script>
+// Regarde l'URL, plus spécifiquement ce qui a après le # et si c'est "renard", alors on affiche un petit message dans la console. execute le code à chaque changement de l'url
+window.addEventListener("hashchange", function() {
+  if (window.location.hash === "#eline") {
+    const coeurModele = document.querySelector("#coeur-modele");
+    nb = 0;
+    const intervalleCoeurs = setInterval(() => {
+      if (nb >= 200) {
+        clearInterval(intervalleCoeurs);
+        return;
+      }
+      const coeur = coeurModele.cloneNode(true);
 
+      coeur.removeAttribute("id");
+      coeur.hidden = false;
+
+      coeur.style.position = "fixed";
+      coeur.style.left = `${Math.random() * 100}vw`;
+      coeur.style.top = `${Math.random() * 100}vh`;
+      coeur.style.margin = "0";
+      coeur.style.fontSize = `${20 + Math.random() * 30}px`;
+      coeur.style.pointerEvents = "none";
+      coeur.style.zIndex = "9999";
+
+      document.body.appendChild(coeur);
+      nb=nb+1;
+    }, 150);
+  }
+});
+</script>
+<!-- FIN Easter Egg --->
+  
 <script src="js/chargement.js"></script>
 <script src="js/navigation.js"></script>
 <script src="js/produits.js"></script>
