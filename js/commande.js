@@ -175,7 +175,8 @@ function initFormulaireCommande() {
       console.error("Échec de l'envoi de la commande :", erreur);
       note.textContent = "Une erreur est survenue. Réessaie — ta commande ne sera " +
                          "pas comptée deux fois. Si ça persiste, écris-nous à " +
-                         "contact.adcn57@gmail.com";
+                         "contact.adcn57@gmail.com"+
+                         "PS : les commandes ne peuvent pas dépasser 20 articles.";
     } finally {
       boutonValider.disabled = false;
     }
