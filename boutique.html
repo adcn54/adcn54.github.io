@@ -148,8 +148,7 @@
 <p id="coeur-modele" hidden>❤️</p>
 <script>
 // Regarde l'URL, plus spécifiquement ce qui a après le # et si c'est "renard", alors on affiche un petit message dans la console. execute le code à chaque changement de l'url
-window.addEventListener("hashchange", function() {
-  if (window.location.hash === "#eline") {
+function coeur_eline() {
     const coeurModele = document.querySelector("#coeur-modele");
     nb = 0;
     const intervalleCoeurs = setInterval(() => {
@@ -173,8 +172,14 @@ window.addEventListener("hashchange", function() {
       document.body.appendChild(coeur);
       nb=nb+1;
     }, 150);
+}
+function verif_hastag() {
+  if (window.location.hash === "#eline") {
+    coeur_eline();
   }
-});
+}
+window.addEventListener("hashchange", verif_hastag);
+verif_hastag(); //charger des le début
 </script>
 <!-- FIN Easter Egg --->
   
