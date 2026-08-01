@@ -38,6 +38,30 @@ function initChargement(options = {}) {
 
   async function reveler() {
     if (revele) return;
+
+    const surLaBoutique = /boutique\.html$/.test(location.pathname);
+
+    if (surLaBoutique) {
+      // On recharge la page UNE FOIS si le catalogue est vide, pour tenter de
+      // récupérer le cache local. Le drapeau vit dans l'URL (et non dans
+      // sessionStorage) car ce dernier ne survit pas toujours au reload()
+      // (file://, webview, navigation privée...), ce qui provoquait une
+      // boucle de rechargement infinie.
+      const url = new URL(location.href);
+      const dejaRetente = url.searchParams.has("adcn-retry");
+      if (!dejaRetente) {
+        if (typeof PRODUITS !== "undefined" && PRODUITS.length === 0) {
+          url.searchParams.set("adcn-retry", "1");
+          location.replace(url);
+          return;
+        }
+      } else {
+        // déjà retenté une fois : on affiche tel quel, et on nettoie l'URL
+        url.searchParams.delete("adcn-retry");
+        history.replaceState(null, "", url);
+      }
+    }
+    
     revele = true;
 
     barre.style.width = "100%";
