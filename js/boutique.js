@@ -74,11 +74,22 @@ function afficherProduits(liste) {
   rafraichirEtatBoutons();
 }
 
+// Catégories retirées de la navigation normale (bouton de filtre + vue "Tout"),
+// mais toujours accessibles via un lien direct : boutique.html#faluche
+// ou boutique.html?item=faluche
+const CATEGORIES_SECRETES = ["faluche"];
+
 let categorieActive = "tout";
 
 function filtrerParCategorie(categorie) {
   categorieActive = categorie;
-  const liste = categorie === "tout" ? PRODUITS : PRODUITS.filter((p) => p.categorie === categorie);
+  let liste;
+  if (categorie === "tout") {
+    // la vue "Tout" n'affiche jamais les catégories secrètes
+    liste = PRODUITS.filter((p) => !CATEGORIES_SECRETES.includes(p.categorie));
+  } else {
+    liste = PRODUITS.filter((p) => p.categorie === categorie);
+  }
   afficherProduits(liste);
 }
 
@@ -87,14 +98,48 @@ function rafraichirBoutique() {
   filtrerParCategorie(categorieActive);
 }
 
+// Lit l'URL pour savoir si une catégorie doit être présélectionnée :
+// boutique.html#pin ou boutique.html?item=pin → filtre "pin" actif au chargement
+function categorieDepuisURL() {
+  const params = new URLSearchParams(window.location.search);
+  const brut = (window.location.hash.slice(1) || params.get("item") || "").toLowerCase();
+  return Object.keys(NOMS_CATEGORIES).includes(brut) ? brut : null;
+}
+
+// Active visuellement le bon bouton de filtre puis applique le filtre
+function selectionnerFiltre(categorie) {
+  const bouton = document.querySelector(`.filtre-categorie[data-categorie="${categorie}"]`);
+  document.querySelectorAll(".filtre-categorie").forEach((b) => b.classList.remove("est-actif"));
+  if (bouton) {
+    bouton.classList.add("est-actif");
+    filtrerParCategorie(categorie);
+  } else {
+    document.querySelector('.filtre-categorie[data-categorie="tout"]').classList.add("est-actif");
+    filtrerParCategorie("tout");
+  }
+}
+
+// Si l'URL demande une catégorie secrète (ex: #faluche), on ajoute un bouton
+// de filtre temporaire le temps de la visite, pour que ce ne soit pas "cassé"
+function afficherFiltreSecretSiBesoin(categorie) {
+  if (!CATEGORIES_SECRETES.includes(categorie)) return;
+  const conteneur = document.querySelector(".filtres");
+  if (conteneur.querySelector(`[data-categorie="${categorie}"]`)) return;
+
+  const bouton = document.createElement("button");
+  bouton.className = "filtre-categorie";
+  bouton.dataset.categorie = categorie;
+  bouton.textContent = NOMS_CATEGORIES[categorie];
+  conteneur.appendChild(bouton);
+}
+
+// Délégation d'événement : un seul écouteur, qui marche aussi pour le
+// bouton "Faluche" ajouté dynamiquement par afficherFiltreSecretSiBesoin()
 function initFiltres() {
-  const boutons = document.querySelectorAll(".filtre-categorie");
-  boutons.forEach((bouton) => {
-    bouton.addEventListener("click", () => {
-      boutons.forEach((b) => b.classList.remove("est-actif"));
-      bouton.classList.add("est-actif");
-      filtrerParCategorie(bouton.dataset.categorie);
-    });
+  document.querySelector(".filtres").addEventListener("click", (evt) => {
+    const bouton = evt.target.closest(".filtre-categorie");
+    if (!bouton) return;
+    selectionnerFiltre(bouton.dataset.categorie);
   });
 }
 
@@ -108,7 +153,18 @@ function initAjoutPanier() {
 }
 
 function initBoutique() {
-  afficherProduits(PRODUITS);
   initFiltres();
   initAjoutPanier();
+
+  const categorieDepart = categorieDepuisURL() || "tout";
+  afficherFiltreSecretSiBesoin(categorieDepart);
+  selectionnerFiltre(categorieDepart);
+
+  // Permet aussi de changer de filtre en modifiant juste le #hash,
+  // sans recharger la page (ex: quelqu'un colle un nouveau lien dans la barre d'adresse)
+  window.addEventListener("hashchange", () => {
+    const categorie = categorieDepuisURL() || "tout";
+    afficherFiltreSecretSiBesoin(categorie);
+    selectionnerFiltre(categorie);
+  });
 }

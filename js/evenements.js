@@ -160,7 +160,11 @@ function construireCartesEvenements() {
     const soustitre = document.createElement("p");
     soustitre.textContent = evenement.sousTitre;
 
-    carte.append(pole, titre, soustitre);
+    const lien = document.createElement("span");
+    lien.className = "carte-evenement-lien";
+    lien.innerHTML = `Voir le détail <span aria-hidden="true">→</span>`;
+
+    carte.append(pole, titre, soustitre, lien);
     grille.appendChild(carte);
   });
 }
