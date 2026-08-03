@@ -32,7 +32,7 @@ function creerCarteProduit(produit) {
   carte.className = "carte carte-produit";
   carte.dataset.id = produit.id; // sert à rafraichirEtatBoutons()
   carte.innerHTML = `
-    <div class="carte-produit-echantillon" data-teinte="${teinteProduit(produit)}"><img class="carte-produit-image" src="img/produits/${produit.id}.png" onerror="this.style.display='none';"/></div>
+    <div class="carte-produit-echantillon" data-teinte="${teinteProduit(produit)}"><img class="carte-produit-image" src="img/produits/${produit.id}.png" alt="" loading="lazy" decoding="async" onerror="this.remove();"/></div>
     <span class="carte-produit-categorie">${NOMS_CATEGORIES[produit.categorie]}</span>
     <h3>${produit.nom}</h3>
     ${afficher_le_stock ? `<span class="carte-produit-stock"></span>` : ""}
