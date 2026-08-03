@@ -39,5 +39,6 @@ function initBoutiqueApercu() {
   const nbCartesLigne = getComputedStyle(grille).gridTemplateColumns.split(" ").length;
   PRODUITS.filter((p) => p.stock > 0)
     .slice(0, nbCartesLigne)
+    .filter((p) => p.categorie !== "faluche") // on ne veut pas afficher les faluche dans l'aperçu
     .forEach((produit) => grille.appendChild(creerCarteProduitApercu(produit)));
 }
