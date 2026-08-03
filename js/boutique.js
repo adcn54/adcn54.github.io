@@ -67,10 +67,16 @@ function rafraichirEtatBoutons() {
   });
 }
 
+function trierParNom(liste) {
+  return [...liste].sort((a, b) =>
+    a.nom.localeCompare(b.nom, "fr", { sensitivity: "base", numeric: true })
+  );
+}
+
 function afficherProduits(liste) {
   const grille = document.getElementById("grille-boutique");
   grille.innerHTML = "";
-  liste.forEach((produit) => grille.appendChild(creerCarteProduit(produit)));
+  trierParNom(liste).forEach((produit) => grille.appendChild(creerCarteProduit(produit)));
   rafraichirEtatBoutons();
 }
 
