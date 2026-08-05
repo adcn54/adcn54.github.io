@@ -73,7 +73,7 @@
       <p class="surtitre">La boutique</p>
       <h2>Pin's, patchs & accessoires</h2>
     </div>
-    <p class="boutique-intro">Ajoute ce qui te plaît au panier, puis valide ta commande — Vient ensuite au local pour récupérer et payer tes articles.</p>
+    <p class="boutique-intro">Ajoute ce qui te plaît au panier, puis valide ta commande — le règlement se fait ensuite en ligne sur la cagnotte Lydia de l'asso, et tu récupères tes articles au local.</p>
 
     <div class="filtres">
       <button class="filtre-categorie est-actif" data-categorie="tout">Tout</button>
@@ -135,7 +135,22 @@
 <div id="popup-recap" class="popup-recap" hidden>
   <div class="popup-contenu">
     <h3>Commande validée !</h3>
-    <p>Merci pour ta commande. Un email récap te seras envoyé dans les prochaines heures/jours. Pense à passer au local pour payer (espèce/CB) et récupérer tes articles. <br> Si tu veux annuler ta commande, contacte-nous à contact.adcn57@gmail.com</p>
+    <p>Merci pour ta commande. Il ne reste plus qu'à la régler en ligne :</p>
+
+    <p class="popup-montant">Montant à payer : <strong id="popup-total">0 €</strong></p>
+
+    <a id="popup-payer" class="bouton" href="#" target="_blank" rel="noopener">
+      Payer sur la cagnotte Lydia
+    </a>
+
+    <p class="popup-precision">
+      Sur la page Lydia, saisis <strong>le montant exact</strong> indiqué ci-dessus
+      et mets bien <strong>tes nom et prénom</strong> : c'est ce qui nous permet de
+      relier ton paiement à ta commande. Un e-mail récap avec le lien t'est envoyé
+      dans les heures qui suivent.
+      <br>Pour annuler : contact.adcn57@gmail.com
+    </p>
+
     <button id="popup-fermer" class="bouton bouton-primaire">Fermer</button>
   </div>
 </div>
