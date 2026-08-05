@@ -58,6 +58,15 @@
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
 }
 
+.grille-boutique-message{
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--texte-attenue);
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: var(--police-texte);
+}
 .carte-produit-echantillon{
   height: 110px;
   border-radius: 3px;
