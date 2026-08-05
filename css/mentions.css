@@ -1,0 +1,124 @@
+/* ============================================================
+   MENTIONS — point d'entrée CSS de mentions.html
+   Réutilise les mêmes fondations que le reste du site ; n'ajoute
+   que la mise en page « texte long » (blocs, tableau, encadré).
+   ============================================================ */
+@import url("base.css");       /* variables (couleurs, polices) + resets */
+@import url("boutons.css");    /* .bouton — « Retour à l'accueil » */
+@import url("navigation.css"); /* barre de navigation + menu mobile */
+@import url("sections.css");   /* .section, .section-entete, .pied-de-page */
+
+/* Pas de hero sur cette page : on compense la hauteur de la nav fixe. */
+.page-legal{
+  padding-top: calc(var(--hauteur-nav) + 60px);
+  padding-bottom: 80px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.legal-maj{
+  font-family: var(--police-mono);
+  font-size: 12.5px;
+  color: var(--texte-attenue);
+  margin-top: 6px;
+}
+
+/* --- un article = une rubrique numérotée --- */
+.bloc-legal{
+  border-top: 1px solid var(--ligne);
+  padding: 32px 0;
+}
+.bloc-legal:first-of-type{ border-top: none; padding-top: 0; }
+
+.bloc-legal h3{
+  font-size: 26px;
+  color: var(--ambre);
+  margin-bottom: 16px;
+}
+
+.bloc-legal h4{
+  font-family: var(--police-titre);
+  font-size: 19px;
+  font-weight: 700;
+  margin: 26px 0 10px;
+}
+
+.bloc-legal p{
+  color: var(--texte-attenue);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.bloc-legal strong{ color: var(--texte); }
+
+.bloc-legal a{
+  color: var(--braise);
+  border-bottom: 1px solid transparent;
+  transition: color .2s ease, border-color .2s ease;
+}
+.bloc-legal a:hover{ color: var(--ambre); border-bottom-color: var(--ambre); }
+
+.bloc-legal ul{
+  margin: 0 0 14px;
+  padding-left: 20px;
+  color: var(--texte-attenue);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.bloc-legal li{ margin-bottom: 10px; }
+.bloc-legal li::marker{ color: var(--braise); }
+
+/* --- tableau récapitulatif du traitement des données --- */
+.tableau-legal{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0 20px;
+  font-size: 14px;
+}
+.tableau-legal th,
+.tableau-legal td{
+  border: 1px solid var(--ligne);
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.55;
+}
+.tableau-legal th{
+  font-family: var(--police-mono);
+  font-size: 11.5px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--texte);
+  background: var(--fond-alt);
+}
+.tableau-legal td{ color: var(--texte-attenue); }
+
+/* --- l'info la plus utile de la page : la demande de suppression --- */
+.encadre{
+  background: var(--fond-alt);
+  border-left: 3px solid var(--braise);
+  padding: 18px 20px;
+  border-radius: 2px;
+}
+
+.page-legal .bouton{ margin-top: 24px; }
+
+@media (max-width: 640px){
+  /* le tableau à 4 colonnes devient illisible : on l'empile */
+  .tableau-legal thead{ display: none; }
+  .tableau-legal, .tableau-legal tbody, .tableau-legal tr, .tableau-legal td{ display: block; width: 100%; }
+  .tableau-legal tr{ border: 1px solid var(--ligne); margin-bottom: 14px; }
+  .tableau-legal td{ border: none; border-bottom: 1px solid var(--ligne); }
+  .tableau-legal td:last-child{ border-bottom: none; }
+  .tableau-legal td::before{
+    content: attr(data-libelle);
+    display: block;
+    font-family: var(--police-mono);
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--texte);
+    margin-bottom: 4px;
+  }
+}
