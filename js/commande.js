@@ -73,7 +73,11 @@ async function envoyerCommande(commande) {
    POPUP DE CONFIRMATION
    ============================================================ */
 
-function recap_popup() {
+function recap_popup(total) {
+  // On affiche le total calculé PAR LE SERVEUR (reponse.total), jamais celui
+  // du panier local : c'est le serveur qui fait foi sur les prix.
+  document.getElementById("popup-total").textContent = total + " €";
+  document.getElementById("popup-payer").href = LIEN_PAIEMENT;
   document.getElementById("popup-recap").hidden = false;
 }
 
@@ -166,7 +170,7 @@ function initFormulaireCommande() {
       viderPanier();
       rafraichirBoutique();
       formulaire.reset();
-      recap_popup();
+      recap_popup(reponse.total); 
 
     } catch (erreur) {
       // ⚠️ ON N'EFFACE PAS LA CLÉ ICI.

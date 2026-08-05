@@ -4,6 +4,7 @@
 
 const URL_API_BOUTIQUE = "https://adcn-boutique-proxy.contact-adcn57.workers.dev/"; // ← ton URL /exec
 const CLE_CACHE_PRODUITS = "adcn-produits-cache";
+const LIEN_PAIEMENT = "https://pots.lydia.me/collect/ventes-adcn-10693190/fr";
 
 let PRODUITS = []; // rempli par chargerProduits(), avant tout affichage
 
