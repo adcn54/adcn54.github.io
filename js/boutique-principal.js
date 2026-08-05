@@ -9,6 +9,7 @@
   await catalogue;
 
   initPanier();
+  initPopupAdhesion();
   initBoutique();
   initFormulaireCommande();
   initPopupRecap();

@@ -30,6 +30,14 @@ function stockDe(idProduit) {
 }
 
 function ajouterAuPanier(idProduit) {
+  const produit = trouverProduit(idProduit);
+  first = false
+  if (produit.categorie != "adhesion" && Object.keys(chargerPanier()).length === 0 && !estDeclareAdherent()) {
+    //Premier article ajouté n'est pas une adhésion et n'est pas encore enregistré comme adhérent
+    ouvrirPopupAdhesion();
+    first = true
+  }
+
   const panier = chargerPanier();
   const dejaDansPanier = panier[idProduit] || 0;
 
@@ -38,7 +46,10 @@ function ajouterAuPanier(idProduit) {
   panier[idProduit] = dejaDansPanier + 1;
   sauvegarderPanier(panier);
   mettreAJourAffichagePanier();
-  ouvrirPanier();
+
+  if (!first) {
+    ouvrirPanier();
+  }
 }
 
 function retirerUniteDuPanier(idProduit) {
@@ -120,6 +131,8 @@ function fermerPanier() {
   document.getElementById("panier-fond").classList.remove("est-ouvert");
   document.body.style.overflow = "";
 }
+
+
 
 // --- initialisation ---
 

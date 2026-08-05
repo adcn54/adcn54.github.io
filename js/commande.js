@@ -167,10 +167,19 @@ function initFormulaireCommande() {
       if (reponse.statut !== "ok") throw new Error(reponse.message || "réponse inattendue");
 
       note.textContent = "Commande envoyée — merci !";
+      
+      //Sauvegarde si achat adhésion
+      adhesion_id = PRODUITS.find((produit) => produit.categorie === "adhesion")?.id;
+      if (adhesion_id && chargerPanier()[adhesion_id] > 0) {
+        memoriserAdherent();
+      }
+
       viderPanier();
       rafraichirBoutique();
       formulaire.reset();
-      recap_popup(reponse.total); 
+      recap_popup(reponse.total);
+      
+      
 
     } catch (erreur) {
       // ⚠️ ON N'EFFACE PAS LA CLÉ ICI.

@@ -73,7 +73,7 @@
       <p class="surtitre">La boutique</p>
       <h2>Pin's, patchs & accessoires</h2>
     </div>
-    <p class="boutique-intro">Ajoute ce qui te plaît au panier, puis valide ta commande — le règlement se fait ensuite en ligne sur la cagnotte Lydia de l'asso, et tu récupères tes articles au local.</p>
+    <p class="boutique-intro">Ajoute ce qui te plaît au panier, puis valide ta commande — le règlement se fait ensuite en ligne sur la cagnotte <a href="https://pots.lydia.me/collect/ventes-adcn-10693190/fr" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">Lydia</a> de l'asso, et tu récupères tes articles au local.</p>
 
     <div class="filtres">
       <button class="filtre-categorie est-actif" data-categorie="tout">Tout</button>
@@ -155,6 +155,20 @@
   </div>
 </div>
 
+<!-- Popup adhésion : posée au premier ajout au panier -->
+<div id="popup-adhesion" class="popup-recap" hidden>
+  <div class="popup-contenu">
+    <h3>Es-tu adhérent·e à l'ADCN ?</h3>
+    <p>
+      La boutique en ligne est réservée aux adhérents. L'adhésion coûte
+      <strong>5 €</strong> et vaut pour toute la saison 2026-2027 — elle sera
+      simplement ajoutée à ta commande, tu régleras le tout en une seule fois.
+    </p>
+    <button id="adhesion-oui" class="bouton bouton-primaire">Oui, je suis adhérent·e</button>
+    <button id="adhesion-non" class="bouton bouton-fantome" style="color: black;">Non — ajouter l'adhésion (5 €)</button>
+  </div>
+</div>
+
 </div>
 <!-- fin de #site -->
   
@@ -203,6 +217,7 @@ verif_hastag(); //charger des le début
 <script src="js/panier.js"></script>
 <script src="js/boutique.js"></script>
 <script src="js/commande.js"></script>
+<script src="js/adhesion.js"></script>
 <script src="js/boutique-principal.js"></script>
 
 

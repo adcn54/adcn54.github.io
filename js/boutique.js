@@ -8,6 +8,7 @@ const NOMS_CATEGORIES = {
   accessoire: "Accessoire",
   faluche: "Faluche",
   kds: "KDS",
+  adhesion: "Adhésion",
 };
 
 // Couleur de la vignette produit, dérivée de l'id : pas besoin d'une vraie
@@ -15,7 +16,7 @@ const NOMS_CATEGORIES = {
 // un champ "image" (une URL) sur le produit dans produits.js et adapte
 // creerCarteProduit() ci-dessous pour l'utiliser à la place de ce dégradé.
 function teinteProduit(produit) {
-  const teintes = {"pin": "braise", "patch": "ambre", "accessoire": "or", "faluche": "charbon", "kds": "bleu"};
+  const teintes = {"adhesion": "charbon", "pin": "braise", "patch": "ambre", "accessoire": "or", "faluche": "charbon", "kds": "bleu"};
   return teintes[produit.categorie];
 }
 
@@ -83,7 +84,7 @@ function afficherProduits(liste) {
 // Catégories retirées de la navigation normale (bouton de filtre + vue "Tout"),
 // mais toujours accessibles via un lien direct : boutique.html#faluche
 // ou boutique.html?item=faluche
-const CATEGORIES_SECRETES = ["faluche"];
+const CATEGORIES_SECRETES = ["faluche", "adhesion"];
 
 let categorieActive = "tout";
 
@@ -92,7 +93,11 @@ function filtrerParCategorie(categorie) {
   let liste;
   if (categorie === "tout") {
     // la vue "Tout" n'affiche jamais les catégories secrètes
-    liste = PRODUITS.filter((p) => !CATEGORIES_SECRETES.includes(p.categorie));
+    liste = PRODUITS.filter(
+      (p) =>
+        p.categorie === "adhesion" ||
+        !CATEGORIES_SECRETES.includes(p.categorie)
+    );
   } else {
     liste = PRODUITS.filter((p) => p.categorie === categorie);
   }

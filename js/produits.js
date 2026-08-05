@@ -7,6 +7,7 @@ const CLE_CACHE_PRODUITS = "adcn-produits-cache";
 const LIEN_PAIEMENT = "https://pots.lydia.me/collect/ventes-adcn-10693190/fr";
 
 let PRODUITS = []; // rempli par chargerProduits(), avant tout affichage
+ 
 
 // Nettoie ce qui vient du Sheet (une case vide ou un prix mal saisi ne doit pas casser la page)
 function normaliserProduits(brut) {
