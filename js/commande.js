@@ -140,7 +140,7 @@ function initFormulaireCommande() {
 
     const boutonValider = formulaire.querySelector("button[type=submit]");
     boutonValider.disabled = true;
-    note.textContent = "Envoi de la commande…";
+    note.textContent = "Envoi de la commande… Veuillez ne pas fermer la page ni cliquer plusieurs fois sur le bouton.";
 
     try {
       const reponse = await envoyerCommande(commande);
