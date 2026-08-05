@@ -256,6 +256,12 @@
   display:flex; flex-direction:column; gap: 16px;
 }
 
+#popup-payer {
+  text-align: center;
+  color: black;
+  background: var(--white);
+}
+
 .carte-produit-stock{
   font-family: var(--police-mono);
   font-size: 11.5px;
