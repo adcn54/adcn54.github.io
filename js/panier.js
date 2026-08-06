@@ -120,7 +120,7 @@ function mettreAJourAffichagePanier() {
   total.textContent = Math.round(calculerTotal(panier) * 100) / 100 + " €";
   compteur.textContent = compterArticles(panier);
   compteur.hidden = compterArticles(panier) === 0;
-  if (typeof rafraichirEtatBoutons === "function") rafraichirEtatBoutons();if (typeof rafraichirEtatBoutons === "function") rafraichirEtatBoutons();
+  if (typeof rafraichirEtatBoutons === "function") rafraichirEtatBoutons();
 }
 
 function ouvrirPanier() {
