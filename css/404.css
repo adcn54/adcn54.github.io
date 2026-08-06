@@ -1,13 +1,3 @@
-/* ============================================================
-   404 — point d'entrée CSS de 404.html
-   Importe les mêmes fondations que le reste du site. Le cadre du
-   jeu, lui, est volontairement en noir/blanc pur (pas les teintes
-   braise/ambre du site) : c'est la demande explicite du jeu.
-   ============================================================ */
-@import url("base.css");       /* variables (couleurs, polices) + resets */
-@import url("boutons.css");    /* .bouton — pour "Retour à l'accueil" */
-@import url("navigation.css"); /* barre de navigation + menu mobile */
-@import url("sections.css");   /* .section générique (padding, largeur max) */
 
 /* ============================================================
    EN-TÊTE DE PAGE

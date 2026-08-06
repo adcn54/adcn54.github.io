@@ -239,3 +239,20 @@
 .carte-evenement:focus-visible .carte-evenement-lien span{
   transform: translateX(4px);
 }
+
+
+/* --- Cartes produit : partagées entre l'aperçu (main.html) et la boutique --- */
+.carte-produit-echantillon{ height: 110px; border-radius: 3px; margin-bottom: 4px;
+  display: flex; align-items: center; justify-content: center; }
+.carte-produit-echantillon[data-teinte="braise"]{ background: linear-gradient(140deg, var(--braise-fonce), var(--braise)); }
+.carte-produit-echantillon[data-teinte="charbon"]{ background: linear-gradient(140deg, #0F0C0A, #2A211B); }
+.carte-produit-echantillon[data-teinte="ambre"]{ background: linear-gradient(140deg, var(--braise), var(--ambre)); }
+.carte-produit-echantillon[data-teinte="bleu"]{ background: linear-gradient(140deg, var(--bleu-fonce), var(--bleu)); }
+.carte-produit-echantillon[data-teinte="or"]{ background: linear-gradient(140deg, var(--or-fonce), var(--or)); }
+.carte-produit-categorie{ font-family: var(--police-mono); font-size: 11px;
+  letter-spacing:.08em; text-transform: uppercase; color: var(--ambre); }
+.carte-produit h3{ font-size: 17px; line-height:1.3; }
+.carte-produit-bas{ margin-top: auto; display:flex; align-items:center;
+  justify-content:space-between; padding-top: 4px; }
+.carte-prix{ font-family: var(--police-mono); color: var(--ambre); font-size: 14px; }
+.carte-produit-image{ width: 100%; height: 90%; object-fit: contain; border-radius: 5px; }
