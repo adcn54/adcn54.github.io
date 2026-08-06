@@ -20,7 +20,7 @@ function ouvrirPopupAdhesion() {
 }
 
 function ajouterAdhesionAuPanier() {
-  const adhesion = PRODUITS.find((produit) => produit.categorie === "adhesion");
+  const adhesion = trouverProduit(ID_ADHESION);
   if (!adhesion) return;
   const panier = chargerPanier();
   panier[adhesion.id] = 1;

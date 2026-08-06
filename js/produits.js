@@ -8,6 +8,8 @@ const LIEN_PAIEMENT = "https://pots.lydia.me/collect/ventes-adcn-10693190/fr";
 
 let PRODUITS = []; // rempli par chargerProduits(), avant tout affichage
  
+// Doit correspondre à ID_ADHESION du script Apps Script.
+const ID_ADHESION = 9999;
 
 // Nettoie ce qui vient du Sheet (une case vide ou un prix mal saisi ne doit pas casser la page)
 function normaliserProduits(brut) {
@@ -28,16 +30,30 @@ function appliquerProduits(brut) {
   return PRODUITS;
 }
 
-async function chargerProduits() {
+function lireCacheLocal() {
   try {
-    // ?t=... : empêche le navigateur de servir une version en cache du catalogue
-    const reponse = await fetch(`${URL_API_BOUTIQUE}?t=${Date.now()}`);
+    return JSON.parse(localStorage.getItem(CLE_CACHE_PRODUITS)) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+const DELAI_MAX_CATALOGUE = 6000;   // ms
+
+async function chargerProduits() {
+  const controleur = new AbortController();
+  const minuteur = setTimeout(() => controleur.abort(), DELAI_MAX_CATALOGUE);
+
+  try {
+    const reponse = await fetch(URL_API_BOUTIQUE, { signal: controleur.signal });
+    if (!reponse.ok) throw new Error("HTTP " + reponse.status);
     const donnees = await reponse.json();
+    SAISON_COURANTE = donnees.saison || null;     // pour le correctif B-03
     return appliquerProduits(donnees.produits);
   } catch (erreur) {
     console.warn("Catalogue injoignable, on repart du cache local.", erreur);
-    try { PRODUITS = JSON.parse(localStorage.getItem(CLE_CACHE_PRODUITS)) || []; }
-    catch (e) { PRODUITS = []; }
-    return PRODUITS;
+    return appliquerProduits(lireCacheLocal());
+  } finally {
+    clearTimeout(minuteur);
   }
 }

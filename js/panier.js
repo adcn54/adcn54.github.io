@@ -31,8 +31,11 @@ function stockDe(idProduit) {
 
 function ajouterAuPanier(idProduit) {
   const produit = trouverProduit(idProduit);
-  first = false
-  if (produit.categorie != "adhesion" && Object.keys(chargerPanier()).length === 0 && !estDeclareAdherent()) {
+  if (!produit) return;                    // garde-fou : l'article n'existe plus
+  let first = false;                       // corrige aussi la globale implicite (J-09)
+  if (Number(idProduit) !== ID_ADHESION
+      && Object.keys(chargerPanier()).length === 0
+      && !estDeclareAdherent()) {
     //Premier article ajouté n'est pas une adhésion et n'est pas encore enregistré comme adhérent
     ouvrirPopupAdhesion();
     first = true

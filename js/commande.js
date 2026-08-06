@@ -169,8 +169,7 @@ function initFormulaireCommande() {
       note.textContent = "Commande envoyée — merci !";
       
       //Sauvegarde si achat adhésion
-      adhesion_id = PRODUITS.find((produit) => produit.categorie === "adhesion")?.id;
-      if (adhesion_id && chargerPanier()[adhesion_id] > 0) {
+      if (chargerPanier()[ID_ADHESION] > 0) {
         memoriserAdherent();
       }
 
