@@ -76,7 +76,9 @@ function initChargement(options = {}) {
   document.body.style.overflow = "hidden"; // bloque le scroll pendant le chargement
 
   // On attend la tâche (ou le chargement de la page) ET la durée minimale.
-  const attente = tache || new Promise((r) => window.addEventListener("load", r, { once: true }));
+  const attente = tache || (document.readyState !== "loading"
+    ? Promise.resolve()
+    : new Promise((r) => document.addEventListener("DOMContentLoaded", r, { once: true })));
   Promise.all([
     Promise.resolve(attente).catch(() => {}), // une erreur ne doit jamais figer l'écran
     new Promise((r) => setTimeout(r, dureeMini)),
