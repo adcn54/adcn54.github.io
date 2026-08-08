@@ -30,22 +30,15 @@ const EVENEMENTS = {
   octobre_rose: {
     pole: "Pôle Santé Publique",
     titre: "Octobre Rose",
-    sousTitre: "Une journée en extérieur, ouverte à tous les niveaux.",
-    description: "Descriptif à compléter : programme de la journée, matériel à prévoir, point de rendez-vous…",
-    images: ["img/1.png"],
-  },
-  novembrose: {
-    pole: "Pôle Santé Publique",
-    titre: "Novembrose",
-    sousTitre: "Stand boutique, tombola et bilan de l'année avec toute la communauté.",
-    description: "Descriptif à compléter : horaires, lots de la tombola, stands présents…",
+    sousTitre: "",
+    description: "Pas encore écrit",
     images: ["img/1.png"],
   },
   h24destan: {
     pole: "Pôle Soirée",
     titre: "24h de Stan",
-    sousTitre: "Stand boutique, tombola et bilan de l'année avec toute la communauté.",
-    description: "Descriptif à compléter : horaires, lots de la tombola, stands présents…",
+    sousTitre: "",
+    description: "Pas encore écrit",
     images: ["img/1.png"],
   },
   ifmsa: {
@@ -58,8 +51,8 @@ const EVENEMENTS = {
   mars_bleu: {
     pole: "Pôle Santé Publique",
     titre: "Mars Bleu",
-    sousTitre: "Stand boutique, tombola et bilan de l'année avec toute la communauté.",
-    description: "Descriptif à compléter : horaires, lots de la tombola, stands présents…",
+    sousTitre: "",
+    description: "Pas encore écrit",
     images: ["img/1.png"],
   },
   hdn: {
