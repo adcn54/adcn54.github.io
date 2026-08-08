@@ -39,9 +39,11 @@ function creerCarteProduit(produit) {
     ${afficher_le_stock ? `<span class="carte-produit-stock"></span>` : ""}
     <div class="carte-produit-bas">
       <span class="carte-prix">${produit.prix} €</span>
-      ${produit.stock > 0
-        ? `<button class="bouton bouton-primaire bouton-petit" data-id="${produit.id}">Ajouter</button>`
-        : `<span class="carte-produit-indisponible">Épuisé</span>`}
+      ${produit.stock <= 0
+      ? `<span class="carte-produit-indisponible">Épuisé</span>`
+      : produit.categorie === "adhesion"
+        ? `<a class="bouton bouton-primaire bouton-petit" href="${LIEN_PAIEMENT_ADHESION}" target="_blank" rel="noopener">Payer</a>`
+        : `<button class="bouton bouton-primaire bouton-petit" data-id="${produit.id}">Ajouter</button>`}
     </div>
   `;
   return carte;
@@ -54,6 +56,7 @@ function rafraichirEtatBoutons() {
   document.querySelectorAll("#grille-boutique .carte-produit").forEach((carte) => {
     const produit = trouverProduit(carte.dataset.id);
     if (!produit) return;
+    if (produit.categorie === "adhesion") return;
     const dansPanier = panier[produit.id] || 0;
     
     if (afficher_le_stock) {

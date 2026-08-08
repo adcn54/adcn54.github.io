@@ -19,6 +19,7 @@ function ouvrirPopupAdhesion() {
   document.getElementById("popup-adhesion").hidden = false;
 }
 
+/*
 function ajouterAdhesionAuPanier() {
   const adhesion = trouverProduit(ID_ADHESION);
   if (!adhesion) return;
@@ -27,6 +28,7 @@ function ajouterAdhesionAuPanier() {
   sauvegarderPanier(panier);
   mettreAJourAffichagePanier();
 }
+
 
 function initPopupAdhesion() {
   const popup = document.getElementById("popup-adhesion");
@@ -41,5 +43,25 @@ function initPopupAdhesion() {
     ajouterAdhesionAuPanier();
     popup.hidden = true;
     ouvrirPanier();
+  });
+}*/
+
+function initPopupAdhesion() {
+  const popup = document.getElementById("popup-adhesion");
+
+  // Prix et lien pris sur le produit "adhesion" du catalogue (une seule fois,
+  // le catalogue est déjà chargé quand initPopupAdhesion() est appelée).
+  const adhesion = PRODUITS.find((produit) => produit.categorie === "adhesion");
+  if (adhesion) document.getElementById("adhesion-prix").textContent = adhesion.prix + " €";
+  document.getElementById("adhesion-non").href = LIEN_PAIEMENT_ADHESION;
+
+  document.getElementById("adhesion-oui").addEventListener("click", () => {
+    memoriserAdherent();
+    popup.hidden = true;
+    ouvrirPanier();      // on enchaîne sur le panier, comme un ajout normal
+  });
+
+  document.getElementById("adhesion-non").addEventListener("click", () => {
+    popup.hidden = true;
   });
 }
