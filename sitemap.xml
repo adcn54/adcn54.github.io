@@ -4,14 +4,12 @@
   <url>
     <loc>https://adcn54.github.io/main.html</loc>
     <lastmod>2026-08-08</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://adcn54.github.io/boutique.html</loc>
     <lastmod>2026-08-08</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
