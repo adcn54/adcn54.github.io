@@ -31,37 +31,37 @@ const MEMBRES = [
     nom: "COLIN Marylène",
     poste: "Présidente",
     teinte: TEINTES.marylene,
-    detail: "Sapeur-pompier depuis sept ans. Six matinées d'immersion, une centaine de lycéens par jour — et l'envie d'en faire cinq par période de vacances."
+    detail: "RP Tut'Prépares 25-26 : kit de la vie étudiante pour les futurs P1 (demandes de bourses, accès logement...), augmenter les périodes d'immersion, renforcer les liens avec les LAS en vue de la réforme."
   },
   {
     nom: "KREMER Mathis",
     poste: "Trésorier",
     teinte: TEINTES.mathis,
-    detail: "Block G'doc, scripts VBS, ronéos commandées par matière — et un Tutoweb qu'on pourrait enfin ouvrir sur son téléphone."
+    detail: "Tuteur UE3 & RM UE6 25-26 : gratuité du pack+ pour les étudiants précaires, app Tutoweb pour téléphone, réorganiser les permanences, rediffuser les GDT."
   },
   {
     nom: "LAURENSON Romane",
     poste: "Secrétaire",
     teinte: TEINTES.romane,
-    detail: "RM Petit Bassin. Un emploi du temps commun à toute la TutoTeam : GDT, soirées, permanences, forums — tout au même endroit."
+    detail: "Tutrice UE3 & RM Petit Bassin 25-26 :  emploi du temps commun à la TutoTeam (GDT, soirées, permanences, Tut'dépenses, forums), avec signalement des événements en manque de présentateurs, Newsletter."
   },
   {
     nom: "CHARBONNIER Jasmine",
     poste: "Vice-Présidente Générale",
     teinte: TEINTES.jasmine,
-    detail: "Les kits de première nécessité, des GDT recentrées sur la pédagogie active, et des ronéos en Verdana pour les dyslexiques."
+    detail: "RP Pédago-Oraux 25-26 : kit pour aider les tuteurs, faire de la pédagogie active (GDT = cours + Wooclap), format audio/podcast pour les cours pertinents."
   },
   {
     nom: "ULRICH--LIBÉ Enzo",
     poste: "Vice-Président Général",
     teinte: TEINTES.enzo,
-    detail: "Une pré-rentrée du S2 en capsules vidéo, des RM formés pour de vrai, et les compréhensions d'anglais enfin traduites."
+    detail: "RM UE3 & RM UE8 25-26 : Pré-rentrée du S2 sous forme de capsules vidéo et de Wooclap distanciel, développer les aides inter-team."
   },
   {
     nom: "LABRE Noé",
     poste: "Vice-Président en charge des Réseaux",
     teinte: TEINTES.noe,
-    detail: "Du local au national : la REES, le WET, la FNEK, et une place pour les tutorats dans chaque fédération de filière."
+    detail: "RP Graph 25-26 : préparer la réfomre 27-28, se faire créditer sur parcoursup, avoir une représentation active de chaque filière au sein du tutorat"
   }
 ];
 
@@ -219,14 +219,18 @@ function construire() {
       <p class="plumes-surtitre">Tutorat Santé Lorraine — Bureau Restreint 2026-2027</p>
       <h2 class="plumes-titre" id="plumes-titre">Les Plumes</h2>
       <p class="plumes-chapeau">
-        Six potes, une seule liste. Née d'un WEF, d'un WET et de
-        quelques projets menés ensemble.
+        Six potes, une seule liste BR pour l'avenir du tuto.
       </p>
       <ul class="plumes-liste">${MEMBRES.map(ligneMembre).join("")}</ul>
       <p class="plumes-projet">
-        <strong>Projet Plumes.</strong> Les notions déjà tombées aux annales,
-        surlignées dans les ronéos, mises en gras et encadrées par des plumes.
+        <strong>Projet Plumes.</strong> Mettre en avant les notions déjà tombées 
+        aux annales dans les ronéos : mises en gras et encadrées par des plumes.
         Comme ceci. Un script pour le premier repérage, les RM pour trancher.
+      </p>
+      <p class="plumes-projet">
+        <strong>Projet Bien-être.</strong> Favoriser le bien être des P1 en incluant un
+        deuxième RP Bien-être. Faire des permanences à thèmes (distribution de ronéos + jeu),
+        former la TutoTeam à la santé mentale (kit parrain/marraine).
       </p>
       <p class="plumes-dedicace">
         Une voix. C'est tout ce qui a manqué.<br>
