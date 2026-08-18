@@ -312,7 +312,7 @@ function fermer() {
    écouteurs et une comparaison de chaîne. Coût quasi nul.
    ============================================================ */
 function verifierHash() {
-  if (window.location.hash === "#plumes") ouvrir();
+  if (window.location.hash.toLowerCase() === "#plumes") ouvrir();
   else fermer();
 }
 
