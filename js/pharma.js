@@ -109,7 +109,7 @@ function activerEasterEggPharma() {
 
 
 function verifierHash() {
-  if (window.location.hash === "#pharma") activerEasterEggPharma();
+  if (window.location.hash.toLowerCase() === "#pharma") activerEasterEggPharma();
   else fermer();
 }
 
