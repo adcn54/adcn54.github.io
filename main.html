@@ -216,11 +216,12 @@
 <script>
 // Regarde l'URL, plus spécifiquement ce qui a après le # et si c'est "renard", alors on affiche un petit message dans la console. execute le code à chaque changement de l'url
 window.addEventListener("hashchange", function() {
-  if (window.location.hash === "#adcn") {
+  hash = window.location.hash.toLowerCase()
+  if (hash === "#adcn") {
     //meilleure association du monde
     console.log("%c🦊 Renard détecté : vive l'ADCN! 🦊", "font-size: 24px; color: #8B4513;");
   }
-  if (window.location.hash === "#eline") {
+  if (hash === "#eline") {
     //La femme de ma vie
     alert("💖 E+M Forever 💖");
     const elements = document.querySelectorAll("h1, h2, h3, p, span, a, button, label");
@@ -228,7 +229,7 @@ window.addEventListener("hashchange", function() {
       element.textContent = "💖 E+M 💖";
     });
   }
-  if (window.location.hash === "#pm") {
+  if (hash === "#pm") {
     //En l'honneur de mes PM
     //Remplace tous les textes par un mot aléatoire ["67", "niels", "jeanne", "saintcochon", "poppyguinisher05g"]
     //Récupère tous les éléments textes de la page et modifie leur texte, le but étant de rendre hommage à mes PMs de fal
