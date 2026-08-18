@@ -58,7 +58,7 @@
     dessiner();
   }
 
-  function verifier(){ if (location.hash === "#eline") lancer(); }
+  function verifier(){ if (location.hash.toLowerCase() === "#eline") lancer(); }
   window.addEventListener("hashchange", verifier);
   verifier();
 })();
