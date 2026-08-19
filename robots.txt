@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /
+Disallow:
 
-Sitemap: https://adcn54.github.io/sitemap.xml
+Sitemap: https://whatarerivalsscripts.github.io/sitemap.xml
