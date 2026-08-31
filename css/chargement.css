@@ -87,7 +87,14 @@
 }
 
 @media (prefers-reduced-motion: reduce){
-  .renard-trait, .renard-point{ animation: none; stroke-dashoffset:0; opacity:1; }
+  .renard-trait,
+  .renard-trait.renard-trait-fin,
+  .renard-point{
+    animation: none;
+    stroke-dasharray: none;   /* neutralise le motif de tirets, quel qu'il soit */
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
 }
 
 /* --- le reste du site, révélé après le chargement --- */
