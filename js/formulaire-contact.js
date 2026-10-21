@@ -3,7 +3,7 @@
 // du message avec les infos saisies dans le formulaire.
 // Expose initFormulaireContact(), appelée depuis principal.js.
 
-const EMAIL_CONTACT = "contact.adcn57@gmail.com";
+const EMAIL_CONTACT = "adcn.contactcom@gmail.com";
 
 function initFormulaireContact() {
   const formulaire = document.getElementById("formulaire-contact");
