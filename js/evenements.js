@@ -25,7 +25,7 @@ const EVENEMENTS = {
     titre: "WEI",
     sousTitre: "Le Week-End d'Intégration de l'ADCN, pour accueillir les nouveaux étudiants.",
     description: "Un week-end festif et convivial organisé par l'ADCN pour accueillir les nouveaux étudiants en santé. Au programme : activités de cohésion, jeux, soirées à thème et moments de partage pour favoriser l'intégration et créer des liens entre les étudiants. Alternant activité avec ET SANS alcool, le WEI est un moment fort de la vie étudiante, ouvert à tous et s'adaptant aux différents rythmes et envies des participants. L'ADCN met un point d'honneur à organiser un événement inclusif et respectueux, où chacun peut se sentir à l'aise et profiter pleinement de cette expérience unique. PS : c'est un super moment pour découvrir votre nouvelle promo de FGSM2 ainsi que les assos de la fac !",
-    images: ["img/event/wei1.png"],
+    images: ["img/event/wei.JPG"],
   },
   octobre_rose: {
     pole: "Pôle Santé Publique",
