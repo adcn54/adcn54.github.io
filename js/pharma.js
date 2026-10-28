@@ -87,7 +87,7 @@ function activerEasterEggPharma() {
     // Textes de l'easter egg
     const texte1 = document.createElement("div");
     texte1.className = "pharma-texte";
-    texte1.textContent = "AAEPN > ADCN";
+    texte1.textContent = "AAEPMerde";
     texte1.style.top = "18vh";
     texte1.style.left = "50%";
     const texte2 = document.createElement("div");
@@ -98,7 +98,7 @@ function activerEasterEggPharma() {
     texte2.style.animationDelay = ".25s";
     document.body.appendChild(texte1);
     document.body.appendChild(texte2);
-    console.log("%c💊 AAEPN > ADCN — pharmaforever 💊", "font-size: 20px; color: #00A651;");
+    console.log("%c💊 HAHAEPMERDE — pharmaforever 💊", "font-size: 20px; color: #00A651;");
   };
   if ("requestIdleCallback" in window) {
     requestIdleCallback(declencher, { timeout: 2000 });
