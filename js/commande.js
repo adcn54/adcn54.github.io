@@ -128,6 +128,9 @@ function initFormulaireCommande() {
       return;
     }
 
+   // Demande de confirmation : si "Non", on s'arrête là, rien n'est envoyé
+    if (!(await demanderConfirmation())) return;
+
     const commande = {
       // Récupérée, pas générée : si une tentative précédente a échoué sans
       // réponse, on renvoie LA MÊME clé et le serveur ne comptera pas deux fois.
@@ -191,5 +194,37 @@ function initFormulaireCommande() {
     } finally {
       boutonValider.disabled = false;
     }
+  });
+}
+
+/* ============================================================
+   POPUP DE DEMANDE DE CONFIRMATION
+   Renvoie une promesse : true si "Oui, commander", false sinon.
+   ============================================================ */
+
+function demanderConfirmation() {
+  const popup = document.getElementById("popup-confirmation");
+  const boutonOui = document.getElementById("confirmation-oui");
+  const boutonNon = document.getElementById("confirmation-non");
+
+  popup.hidden = false;
+  boutonOui.focus();
+
+  return new Promise((resolve) => {
+    function fermer(choix) {
+      popup.hidden = true;
+      // On retire les écouteurs pour ne pas les empiler à chaque commande
+      boutonOui.removeEventListener("click", surOui);
+      boutonNon.removeEventListener("click", surNon);
+      document.removeEventListener("keydown", surTouche);
+      resolve(choix);
+    }
+    const surOui = () => fermer(true);
+    const surNon = () => fermer(false);
+    const surTouche = (evt) => { if (evt.key === "Escape") fermer(false); };
+
+    boutonOui.addEventListener("click", surOui);
+    boutonNon.addEventListener("click", surNon);
+    document.addEventListener("keydown", surTouche);
   });
 }
